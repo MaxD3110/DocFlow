@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filemanagementservice-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filemanagementservice
+  template:
+    metadata:
+      labels:
+        app: filemanagementservice
+    spec:
+      containers:
+        - name: filemanagementservice
+          image: maxd3110/filemanagementservice:latest
+  

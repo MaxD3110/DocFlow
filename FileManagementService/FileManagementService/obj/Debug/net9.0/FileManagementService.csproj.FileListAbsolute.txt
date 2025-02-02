@@ -1,0 +1,334 @@
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\appsettings.Development.json
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\appsettings.json
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\FileManagementService.staticwebassets.endpoints.json
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\FileManagementService.exe
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\FileManagementService.deps.json
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\FileManagementService.runtimeconfig.json
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\FileManagementService.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\FileManagementService.pdb
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\AutoMapper.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Azure.Core.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Azure.Identity.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Humanizer.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Build.Locator.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.OpenApi.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\Mono.TextTemplating.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.ClientModel.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.CodeDom.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Composition.AttributedModel.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Composition.Convention.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Composition.Hosting.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Composition.Runtime.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Composition.TypedParts.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Drawing.Common.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Formats.Asn1.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Memory.Data.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Runtime.Caching.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Security.Permissions.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Text.Json.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\System.Windows.Extensions.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\Projects\File Management Service\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileManagementService.csproj.AssemblyReference.cache
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileManagementService.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileManagementService.AssemblyInfoInputs.cache
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileManagementService.AssemblyInfo.cs
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileManagementService.csproj.CoreCompileInputs.cache
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileManagementService.MvcApplicationPartsAssemblyInfo.cs
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileManagementService.MvcApplicationPartsAssemblyInfo.cache
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\scopedcss\bundle\FileManagementService.styles.css
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\staticwebassets.build.json
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\staticwebassets.development.json
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\staticwebassets\msbuild.FileManagementService.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\staticwebassets\msbuild.FileManagementService.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\staticwebassets\msbuild.build.FileManagementService.props
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.FileManagementService.props
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.FileManagementService.props
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\staticwebassets.pack.json
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileMana.7FD51A46.Up2Date
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileManagementService.dll
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\refint\FileManagementService.dll
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileManagementService.pdb
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\FileManagementService.genruntimeconfig.cache
+D:\Projects\File Management Service\FileManagementService\obj\Debug\net9.0\ref\FileManagementService.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\appsettings.Development.json
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\appsettings.json
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\FileManagementService.staticwebassets.endpoints.json
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\FileManagementService.exe
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\FileManagementService.deps.json
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\FileManagementService.runtimeconfig.json
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\FileManagementService.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\FileManagementService.pdb
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\AutoMapper.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Azure.Core.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Azure.Identity.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Humanizer.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Build.Locator.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.OpenApi.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\Mono.TextTemplating.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.ClientModel.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.CodeDom.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Composition.AttributedModel.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Composition.Convention.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Composition.Hosting.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Composition.Runtime.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Composition.TypedParts.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Drawing.Common.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Formats.Asn1.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Memory.Data.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Runtime.Caching.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Security.Permissions.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Text.Json.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\System.Windows.Extensions.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\Projects\FileManagementService\FileManagementService\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileManagementService.csproj.AssemblyReference.cache
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileManagementService.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileManagementService.AssemblyInfoInputs.cache
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileManagementService.AssemblyInfo.cs
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileManagementService.csproj.CoreCompileInputs.cache
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileManagementService.MvcApplicationPartsAssemblyInfo.cs
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileManagementService.MvcApplicationPartsAssemblyInfo.cache
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\scopedcss\bundle\FileManagementService.styles.css
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\staticwebassets.build.json
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\staticwebassets.development.json
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\staticwebassets\msbuild.FileManagementService.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\staticwebassets\msbuild.FileManagementService.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\staticwebassets\msbuild.build.FileManagementService.props
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.FileManagementService.props
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.FileManagementService.props
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\staticwebassets.pack.json
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileMana.7FD51A46.Up2Date
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileManagementService.dll
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\refint\FileManagementService.dll
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileManagementService.pdb
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\FileManagementService.genruntimeconfig.cache
+D:\Projects\FileManagementService\FileManagementService\obj\Debug\net9.0\ref\FileManagementService.dll
