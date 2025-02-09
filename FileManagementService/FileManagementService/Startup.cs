@@ -1,4 +1,5 @@
 using FileManagementService.Data;
+using FileManagementService.SyncDataServices.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace FileManagementService;
@@ -15,7 +16,11 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("memoryDb"));
+
         services.AddScoped<IFileRepository, FileRepository>();
+
+        services.AddHttpClient<IProcessorDataClient, HttpProcessorDataClient>();
+
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.AddControllers();
     }

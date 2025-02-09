@@ -15,4 +15,17 @@ spec:
       containers:
         - name: filemanagementservice
           image: maxd3110/filemanagementservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: filemanagementservice-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: filemanagementservice
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
   

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fileprocessorservice-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fileprocessorservice
+  template:
+    metadata:
+      labels:
+        app: fileprocessorservice
+    spec:
+      containers:
+        - name: fileprocessorservice
+          image: maxd3110/fileprocessorservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fileprocessorservice-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: fileprocessorservice
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  

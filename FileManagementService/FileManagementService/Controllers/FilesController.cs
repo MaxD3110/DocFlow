@@ -2,6 +2,7 @@ using AutoMapper;
 using FileManagementService.Data;
 using FileManagementService.DTOs;
 using FileManagementService.Models;
+using FileManagementService.SyncDataServices.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FileManagementService.Controllers;
@@ -12,11 +13,16 @@ public class FilesController : ControllerBase
 {
     private readonly IFileRepository _fileRepository;
     private readonly IMapper _mapper;
+    private readonly IProcessorDataClient _processorDataClient;
 
-    public FilesController(IFileRepository fileRepository, IMapper mapper)
+    public FilesController(
+        IFileRepository fileRepository,
+        IMapper mapper,
+        IProcessorDataClient processorDataClient)
     {
         _fileRepository = fileRepository;
         _mapper = mapper;
+        _processorDataClient = processorDataClient;
     }
     
     [HttpGet]
@@ -50,6 +56,16 @@ public class FilesController : ControllerBase
         await _fileRepository.SaveChangesAsync();
         
         var fileModelToDto = _mapper.Map<FileDto>(fileModel);
+
+        try
+        {
+            await _processorDataClient.SendFileToProcessorAsync(fileModelToDto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Could not send file to processor: {e.Message}");
+            throw;
+        }
 
         return CreatedAtRoute(nameof(GetFileById), new { id = fileModel.Id }, fileModelToDto);
     }
