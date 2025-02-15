@@ -1,4 +1,5 @@
 using FileManagementService.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FileManagementService.Data;
 
@@ -14,9 +15,19 @@ public static class PrepDb
 
     private static void SetupDatabase(AppDbContext context)
     {
+        try
+        {
+            context.Database.Migrate();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
         if (!context.Files.Any())
         {
-            Console.WriteLine("Creating data...");
+            Console.WriteLine("Creating data... test");
 
             context.Files.AddRange(
                 new FileModel {Name = "11111"},

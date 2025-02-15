@@ -15,7 +15,8 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("memoryDb"));
+        services.AddDbContext<AppDbContext>(opt =>
+            opt.UseNpgsql(Configuration.GetConnectionString("ManagementConnection")));
 
         services.AddScoped<IFileRepository, FileRepository>();
 
