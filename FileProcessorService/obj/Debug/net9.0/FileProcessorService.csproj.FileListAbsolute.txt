@@ -22,16 +22,7 @@ D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.EntityFramew
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
-D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
-D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
-D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
-D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
-D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
-D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
-D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
-D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Microsoft.OpenApi.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Mono.TextTemplating.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\System.CodeDom.dll
@@ -40,7 +31,6 @@ D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\System.Composition.Con
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\System.Composition.Hosting.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\System.Composition.Runtime.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\System.Composition.TypedParts.dll
-D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\System.Text.Json.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll

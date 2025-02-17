@@ -1,3 +1,7 @@
+using FileProcessorService.Data;
+using FileProcessorService.Services;
+using Microsoft.EntityFrameworkCore;
+
 namespace FileProcessorService;
 
 public class Startup
@@ -11,7 +15,9 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("memoryDb"));
+        services.AddScoped<IFileLogRepository, FileLogRepository>();
+        services.AddScoped<IProcessingService, ProcessingService>();
         services.AddControllers();
     }
 

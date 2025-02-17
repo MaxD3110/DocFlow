@@ -25,7 +25,7 @@ public class HttpProcessorDataClient : IProcessorDataClient
         var response = await _httpClient.PostAsync(_configuration["ProcessorService"], httpContent);
         
         if (response.IsSuccessStatusCode)
-            Console.WriteLine("Post to processor was successful");
+            Console.WriteLine("-- Processor service connection established");
         else
             Console.WriteLine(await response.Content.ReadAsStringAsync());
     }
