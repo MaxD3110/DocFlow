@@ -1,3 +1,4 @@
+using FileManagementService.AsyncDataServices;
 using FileManagementService.Data;
 using FileManagementService.SyncDataServices.Http;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ public class Startup
             opt.UseNpgsql(Configuration.GetConnectionString("ManagementConnection")));
 
         services.AddScoped<IFileRepository, FileRepository>();
+        services.AddSingleton<IMessageBusClient, MessageBusClient>();
 
         services.AddHttpClient<IProcessorDataClient, HttpProcessorDataClient>();
 

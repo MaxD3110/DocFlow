@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FileProcessorService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a2e2156d7fd8a0e538cbd85103378fc74c8ca0f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+44a764c052c8ec251d60da024e65e4851a859af1")]
 [assembly: System.Reflection.AssemblyProductAttribute("FileProcessorService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FileProcessorService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

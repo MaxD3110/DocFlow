@@ -1,4 +1,6 @@
-using FileProcessorService.Services;
+using AutoMapper;
+using FileProcessorService.Data;
+using FileProcessorService.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FileProcessorService.Controllers;
@@ -7,36 +9,40 @@ namespace FileProcessorService.Controllers;
 [ApiController]
 public class FilesController : ControllerBase
 {
-    private readonly IProcessingService _processingService;
+    private readonly IFileLogRepository _fileLogRepository;
+    private readonly IMapper _mapper;
 
-    public FilesController(IProcessingService processingService)
+    public FilesController(IFileLogRepository fileLogRepository, IMapper mapper)
     {
-        _processingService = processingService;
+        _fileLogRepository = fileLogRepository;
+        _mapper = mapper;
     }
     
     [HttpGet]
+    [Route("Ping")]
     public IActionResult PingInboundConnection()
     {
         Console.WriteLine("-- Testing processor connection");
         return Ok("Connection established");
     }
+    
+    [HttpGet]
+    [Route("GetLogs")]
+    public async Task<IActionResult> GetLogs()
+    {
+        var fileLogs = await _fileLogRepository.GetFileLogsAsync();
+
+        var result = _mapper.Map<IEnumerable<FileLogDto>>(fileLogs);
+        
+        return Ok(result);
+    }
 
     [HttpPost]
-    public async Task<IActionResult> ConvertFile(IFormFile? file, [FromForm] string format)
+    public IActionResult ConvertFile(IFormFile? file, [FromForm] string format)
     {
         if (file == null || file.Length == 0)
             return BadRequest("File is empty");
-        
-        byte[] fileBytes;
 
-        using (var ms = new MemoryStream())
-        {
-            await file.CopyToAsync(ms);
-            fileBytes = ms.ToArray();
-        }
-        
-        byte[] convertedFile = await _processingService.ConvertToPdfAsync(fileBytes);
-
-        return File(convertedFile, "application/octet-stream", "converted." + format);
+        return Ok();
     }
 }

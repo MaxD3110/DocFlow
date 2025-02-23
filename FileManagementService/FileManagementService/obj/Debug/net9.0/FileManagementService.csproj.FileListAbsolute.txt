@@ -455,3 +455,4 @@ D:\Projects\DocFlow\FileManagementService\FileManagementService\obj\Debug\net9.0
 D:\Projects\DocFlow\FileManagementService\FileManagementService\obj\Debug\net9.0\ref\FileManagementService.dll
 D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Npgsql.dll
 D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\RabbitMQ.Client.dll

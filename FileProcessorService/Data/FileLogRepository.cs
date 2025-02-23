@@ -16,5 +16,5 @@ public class FileLogRepository : IFileLogRepository
 
     public async Task<List<FileLogModel>> GetFileLogsAsync() => await _ctx.FileLogs.ToListAsync();
 
-    public async Task<bool> SaveChangesAsync(FileLogModel model) => await _ctx.SaveChangesAsync() >= 0;
+    public async Task<bool> SaveChangesAsync() => await _ctx.SaveChangesAsync() >= 0;
 }

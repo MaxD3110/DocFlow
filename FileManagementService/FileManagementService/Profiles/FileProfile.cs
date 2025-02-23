@@ -10,5 +10,6 @@ public class FileProfile : Profile
     {
         CreateMap<FileModel, FileDto>();
         CreateMap<FileDto, FileModel>();
+        CreateMap<FileDto, FileToConvertDto>();
     }
 }

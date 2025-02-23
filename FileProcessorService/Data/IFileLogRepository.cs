@@ -6,7 +6,7 @@ public interface IFileLogRepository
 {
     Task SaveFileLogAsync(FileLogModel model);
 
-    Task<bool> SaveChangesAsync(FileLogModel model);
+    Task<bool> SaveChangesAsync();
     
     Task<List<FileLogModel>> GetFileLogsAsync();
 }

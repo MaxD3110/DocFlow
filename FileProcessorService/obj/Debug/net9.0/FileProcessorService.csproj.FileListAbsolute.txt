@@ -120,3 +120,4 @@ D:\Projects\DocFlow\FileProcessorService\obj\Debug\net9.0\refint\FileProcessorSe
 D:\Projects\DocFlow\FileProcessorService\obj\Debug\net9.0\FileProcessorService.pdb
 D:\Projects\DocFlow\FileProcessorService\obj\Debug\net9.0\FileProcessorService.genruntimeconfig.cache
 D:\Projects\DocFlow\FileProcessorService\obj\Debug\net9.0\ref\FileProcessorService.dll
+D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\RabbitMQ.Client.dll

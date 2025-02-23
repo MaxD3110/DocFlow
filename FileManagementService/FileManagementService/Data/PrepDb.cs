@@ -30,10 +30,10 @@ public static class PrepDb
             Console.WriteLine("Creating data... test");
 
             context.Files.AddRange(
-                new FileModel {Name = "11111"},
-                new FileModel {Name = "22222"},
-                new FileModel {Name = "3333"},
-                new FileModel {Name = "4444"});
+                new FileModel {FileName = "11111"},
+                new FileModel {FileName = "22222"},
+                new FileModel {FileName = "3333"},
+                new FileModel {FileName = "4444"});
             
             context.SaveChanges();
         }

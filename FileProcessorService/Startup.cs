@@ -1,5 +1,6 @@
+using FileProcessorService.AsyncDataServices;
 using FileProcessorService.Data;
-using FileProcessorService.Services;
+using FileProcessorService.EventProcessing;
 using Microsoft.EntityFrameworkCore;
 
 namespace FileProcessorService;
@@ -16,8 +17,14 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("memoryDb"));
-        services.AddScoped<IFileLogRepository, FileLogRepository>();
-        services.AddScoped<IProcessingService, ProcessingService>();
+
+        services.AddScoped<IFileLogRepository, FileLogRepository>(); 
+        services.AddSingleton<IEventProcessor, EventProcessor>();
+
+        services.AddHostedService<MessageBusSubscriber>();
+
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
         services.AddControllers();
     }
 

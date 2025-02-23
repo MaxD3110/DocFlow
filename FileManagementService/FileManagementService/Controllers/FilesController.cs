@@ -1,4 +1,5 @@
 using AutoMapper;
+using FileManagementService.AsyncDataServices;
 using FileManagementService.Data;
 using FileManagementService.DTOs;
 using FileManagementService.Models;
@@ -14,15 +15,18 @@ public class FilesController : ControllerBase
     private readonly IFileRepository _fileRepository;
     private readonly IMapper _mapper;
     private readonly IProcessorDataClient _processorDataClient;
+    private readonly IMessageBusClient _messageBusClient;
 
     public FilesController(
         IFileRepository fileRepository,
         IMapper mapper,
-        IProcessorDataClient processorDataClient)
+        IProcessorDataClient processorDataClient,
+        IMessageBusClient messageBusClient)
     {
         _fileRepository = fileRepository;
         _mapper = mapper;
         _processorDataClient = processorDataClient;
+        _messageBusClient = messageBusClient;
     }
     
     [HttpGet]
@@ -64,6 +68,20 @@ public class FilesController : ControllerBase
         catch (Exception e)
         {
             Console.WriteLine($"Could not send file to processor: {e.Message}");
+            throw;
+        }
+
+        try
+        {
+            var fileToConvert = _mapper.Map<FileToConvertDto>(fileModelToDto);
+
+            fileToConvert.Event = "FileAwaitConvertation";
+
+            await _messageBusClient.ConvertFile(fileToConvert);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Could not send async file to processor: {e.Message}");
             throw;
         }
 
