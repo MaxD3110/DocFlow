@@ -50,6 +50,40 @@ public class FilesController : ControllerBase
 
         return Ok(mappedFile);
     }
+
+    [HttpPost("Upload")]
+    public async Task<IActionResult> UploadFile([FromForm] IFormFile file)
+    {        
+        var fileType = file.FileName.Split(".")[^1];
+        var fileName = $"File_{Guid.NewGuid()}.{fileType}";
+        var filePath = Path.Combine("StoredFiles", fileName);
+
+        Directory.CreateDirectory("StoredFiles");
+
+        await using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        var fileDto = new FileDto
+        {
+            FileName = fileName,
+            FileSize = file.Length,
+            FileType = fileType,
+            StoragePath = filePath,
+            UploadedAt = DateTime.UtcNow
+        };
+
+        var fileModel = _mapper.Map<FileModel>(fileDto);
+
+        await _fileRepository.CreateFileAsync(fileModel);
+        await _fileRepository.SaveChangesAsync();
+        
+        if (fileModel.Id == 0)
+            return BadRequest("Не удалось сохранить файл");
+        
+        return Ok(fileModel.Id);
+    }
     
     [HttpPost]
     public async Task<IActionResult> CreateFile(FileDto file)
