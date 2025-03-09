@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@layer components {
+    .color-danger {
+      a {
+        color: var(--color-gray-600) !important;
+        &:hover {
+          color: var(--color-red-600) !important;
+          cursor: pointer;
+          transition: color .2s;
+        }
+      }
+    }
+  }
