@@ -1,15 +1,8 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace FileManagementService.Models;
 
-public class FileModel
+public class FileModel : BaseModel
 {
-    [Key]
-    public int Id { get; set; }
-
-    public string? FileName { get; set; }
-
-    public string? FileType { get; set; }
+    public Extension? Extension { get; set; }
 
     public long FileSize { get; set; }
 

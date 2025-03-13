@@ -1,11 +1,7 @@
 namespace FileManagementService.DTOs;
 
-public class FileDto
+public class FileDto : BaseDto
 {
-    public int Id { get; set; }
-    
-    public string? FileName { get; set; }
-    
     public string? FileType { get; set; }
 
     public long FileSize { get; set; }

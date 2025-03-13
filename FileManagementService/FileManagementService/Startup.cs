@@ -19,7 +19,7 @@ public class Startup
         services.AddDbContext<AppDbContext>(opt =>
             opt.UseNpgsql(Configuration.GetConnectionString("ManagementConnection")));
 
-        services.AddScoped<IFileRepository, FileRepository>();
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddSingleton<IMessageBusClient, MessageBusClient>();
 
         services.AddHttpClient<IProcessorDataClient, HttpProcessorDataClient>();

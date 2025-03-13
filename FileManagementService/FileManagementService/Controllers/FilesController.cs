@@ -5,6 +5,7 @@ using FileManagementService.DTOs;
 using FileManagementService.Models;
 using FileManagementService.SyncDataServices.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FileManagementService.Controllers;
 
@@ -12,18 +13,21 @@ namespace FileManagementService.Controllers;
 [ApiController]
 public class FilesController : ControllerBase
 {
-    private readonly IFileRepository _fileRepository;
+    private readonly IRepository<FileModel> _fileRepository;
+    private readonly IRepository<Extension> _extensionRepository;
     private readonly IMapper _mapper;
     private readonly IProcessorDataClient _processorDataClient;
     private readonly IMessageBusClient _messageBusClient;
 
     public FilesController(
-        IFileRepository fileRepository,
+        IRepository<FileModel> fileRepository,
+        IRepository<Extension> extensionRepository,
         IMapper mapper,
         IProcessorDataClient processorDataClient,
         IMessageBusClient messageBusClient)
     {
         _fileRepository = fileRepository;
+        _extensionRepository = extensionRepository;
         _mapper = mapper;
         _processorDataClient = processorDataClient;
         _messageBusClient = messageBusClient;
@@ -32,7 +36,8 @@ public class FilesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetFiles()
     {
-        var files = await _fileRepository.GetFilesAsync();
+        var files = await _fileRepository.Query()
+            .ToListAsync();
         var mappedFiles = _mapper.Map<IEnumerable<FileDto>>(files);
         
         return Ok(mappedFiles);
@@ -41,7 +46,7 @@ public class FilesController : ControllerBase
     [HttpGet("{id:int}", Name = "GetFileById")]
     public async Task<IActionResult> GetFileById(int id)
     {
-        var file = await _fileRepository.GetFileAsync(id);
+        var file = await _fileRepository.GetByIdAsync(id);
         
         if (file == null)
             return BadRequest();
@@ -67,7 +72,7 @@ public class FilesController : ControllerBase
 
         var fileDto = new FileDto
         {
-            FileName = fileName,
+            Name = fileName,
             FileSize = file.Length,
             FileType = fileType,
             StoragePath = filePath,
@@ -76,8 +81,7 @@ public class FilesController : ControllerBase
 
         var fileModel = _mapper.Map<FileModel>(fileDto);
 
-        await _fileRepository.CreateFileAsync(fileModel);
-        await _fileRepository.SaveChangesAsync();
+        await _fileRepository.CreateAsync(fileModel);
         
         if (fileModel.Id == 0)
             return BadRequest("Не удалось сохранить файл");
@@ -90,8 +94,7 @@ public class FilesController : ControllerBase
     {
         var fileModel = _mapper.Map<FileModel>(file);
 
-        await _fileRepository.CreateFileAsync(fileModel);
-        await _fileRepository.SaveChangesAsync();
+        await _fileRepository.CreateAsync(fileModel);
         
         var fileModelToDto = _mapper.Map<FileDto>(fileModel);
 
