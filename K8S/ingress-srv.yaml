@@ -10,14 +10,14 @@ spec:
     - host: docflow.com
       http:
         paths:
-          - path: /api/files
+          - path: /api
             pathType: Prefix
             backend:
               service:
                 name: filemanagementservice-clusterip-srv
                 port:
                   number: 8080
-          - path: /api/processor/files
+          - path: /api/processor
             pathType: Prefix
             backend:
               service:

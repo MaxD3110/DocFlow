@@ -31,4 +31,8 @@
         <Protobuf Include="Protos/filemanagement.proto" GrpcServices="Server"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="StoredFiles\" />
+    </ItemGroup>
+
 </Project>

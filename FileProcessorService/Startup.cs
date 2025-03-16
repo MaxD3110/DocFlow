@@ -20,6 +20,7 @@ public class Startup
         services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("memoryDb"));
 
         services.AddScoped<IFileLogRepository, FileLogRepository>();
+        services.AddScoped<IExtensionRepository, ExtensionRepository>();
         services.AddScoped<IFileManagementDataClient, FileManagementDataClient>();
         services.AddSingleton<IEventProcessor, EventProcessor>();
 

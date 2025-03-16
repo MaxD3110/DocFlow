@@ -28,7 +28,7 @@ public class FileManagementDataClient : IFileManagementDataClient
         {
             var reply = client.GetAllFileExtensions(request);
             
-            return _mapper.Map<IEnumerable<Extension>>(reply);
+            return _mapper.Map<IEnumerable<Extension>>(reply.Extension);
         }
         catch (Exception e)
         {
