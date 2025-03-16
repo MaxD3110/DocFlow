@@ -456,3 +456,10 @@ D:\Projects\DocFlow\FileManagementService\FileManagementService\obj\Debug\net9.0
 D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Npgsql.dll
 D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\RabbitMQ.Client.dll
+D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Google.Protobuf.dll
+D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Grpc.AspNetCore.Server.dll
+D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Grpc.AspNetCore.Server.ClientFactory.dll
+D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Grpc.Core.Api.dll
+D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Grpc.Net.Client.dll
+D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Grpc.Net.ClientFactory.dll
+D:\Projects\DocFlow\FileManagementService\FileManagementService\bin\Debug\net9.0\Grpc.Net.Common.dll

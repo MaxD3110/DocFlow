@@ -5,6 +5,7 @@ using FileManagementService.DTOs;
 using FileManagementService.Models;
 using FileManagementService.SyncDataServices.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 
 namespace FileManagementService.Controllers;
@@ -37,6 +38,8 @@ public class FilesController : ControllerBase
     public async Task<IActionResult> GetFiles()
     {
         var files = await _fileRepository.Query()
+            .Include(f => f.Extension)
+            .ThenInclude(e => e!.ConvertibleTo)
             .ToListAsync();
         var mappedFiles = _mapper.Map<IEnumerable<FileDto>>(files);
         
@@ -59,8 +62,28 @@ public class FilesController : ControllerBase
     [HttpPost("Upload")]
     public async Task<IActionResult> UploadFile([FromForm] IFormFile file)
     {        
-        var fileType = file.FileName.Split(".")[^1];
-        var fileName = $"File_{Guid.NewGuid()}.{fileType}";
+        var filenameExtension = Path.GetExtension(file.FileName).TrimStart('.'); 
+        var provider = new FileExtensionContentTypeProvider();
+
+        if (!provider.TryGetContentType(file.FileName, out string contentType))
+            contentType = "application/octet-stream"; // Fallback if unknown
+
+        var existingExtension = await _extensionRepository.Query()
+            .FirstOrDefaultAsync(e => e.MediaType == contentType);
+
+        if (existingExtension == null)
+        {
+            var newExtension = new Extension
+            {
+                Name = filenameExtension.ToUpper(),
+                FilenameExtension = filenameExtension,
+                MediaType = contentType
+            };
+
+            existingExtension = await _extensionRepository.CreateAsync(newExtension);
+        }
+
+        var fileName = $"File_{Guid.NewGuid()}.{filenameExtension}";
         var filePath = Path.Combine("StoredFiles", fileName);
 
         Directory.CreateDirectory("StoredFiles");
@@ -70,16 +93,14 @@ public class FilesController : ControllerBase
             await file.CopyToAsync(stream);
         }
 
-        var fileDto = new FileDto
+        var fileModel = new FileModel
         {
             Name = fileName,
+            Extension = existingExtension,
             FileSize = file.Length,
-            FileType = fileType,
             StoragePath = filePath,
             UploadedAt = DateTime.UtcNow
         };
-
-        var fileModel = _mapper.Map<FileModel>(fileDto);
 
         await _fileRepository.CreateAsync(fileModel);
         
@@ -87,6 +108,30 @@ public class FilesController : ControllerBase
             return BadRequest("Не удалось сохранить файл");
         
         return Ok(fileModel.Id);
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteFile(int id)
+    {
+        var file = await _fileRepository.GetByIdAsync(id);
+        
+        if (file == null)
+            return NotFound();
+            
+        try
+        {
+            if (!string.IsNullOrEmpty(file.StoragePath))
+                System.IO.File.Delete(file.StoragePath);
+            
+            await _fileRepository.DeleteAsync(file);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest();
+        }
+
+        return Ok();
     }
     
     [HttpPost]

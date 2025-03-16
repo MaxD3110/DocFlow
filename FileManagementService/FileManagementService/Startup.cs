@@ -1,5 +1,6 @@
 using FileManagementService.AsyncDataServices;
 using FileManagementService.Data;
+using FileManagementService.SyncDataServices.Grpc;
 using FileManagementService.SyncDataServices.Http;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,8 @@ public class Startup
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddSingleton<IMessageBusClient, MessageBusClient>();
 
+        services.AddGrpc();
+
         services.AddHttpClient<IProcessorDataClient, HttpProcessorDataClient>();
 
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -36,7 +39,15 @@ public class Startup
 
         app.UseAuthorization();
 
-        app.UseEndpoints(endpoints => endpoints.MapControllers());
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+            endpoints.MapGrpcService<GrpcFileManagementService>();
+            endpoints.MapGet("/protos/filemanagement.proto", async context =>
+            {
+                await context.Response.WriteAsync(File.ReadAllText("protos/filemanagement.proto"));
+            });
+        });
 
         PrepDb.PrepPopulation(app);
     }

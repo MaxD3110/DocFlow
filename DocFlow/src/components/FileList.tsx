@@ -25,6 +25,8 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
         } catch (error) {
             setError("Failed to delete file.");
         }
+
+        fetchFiles();
     }
 
     const convertFile = async (id: number) => {
@@ -67,8 +69,8 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
                         {files.length > 0 ? (
                             files.map((file) => (
                                 <tr key={file.id} className="hover:bg-blue-50 transition">
-                                    <td className="py-2 px-4 text-center">{file.fileName}</td>
-                                    <td className="py-2 px-4 text-center">{file.fileType}</td>
+                                    <td className="py-2 px-4 text-center">{file.name}</td>
+                                    <td className="py-2 px-4 text-center">{file.extensionName}</td>
                                     <td className="py-2 px-4 text-center">
                                         {(file.fileSize / 1024).toFixed(2)}
                                     </td>

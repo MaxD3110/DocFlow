@@ -22,26 +22,22 @@ public class Repository<T> : IRepository<T> where T : BaseModel
 
     public async Task<T> CreateAsync(T entity)
     {
-        ArgumentNullException.ThrowIfNull(entity);
-        
         await _dbSet.AddAsync(entity);
         await _context.SaveChangesAsync();
+
         return entity;
     }
 
     public async Task<T> UpdateAsync(T entity)
     {
-        ArgumentNullException.ThrowIfNull(entity);
-        
         _dbSet.Update(entity);
         await _context.SaveChangesAsync();
+
         return entity;
     }
 
     public async Task DeleteAsync(T entity)
     {
-        ArgumentNullException.ThrowIfNull(entity);
-        
         _dbSet.Remove(entity);
         await _context.SaveChangesAsync();
     }
@@ -52,7 +48,6 @@ public class Repository<T> : IRepository<T> where T : BaseModel
 
         ArgumentNullException.ThrowIfNull(entity);
 
-        await DeleteAsync (entity);
-        await _context.SaveChangesAsync();
+        await DeleteAsync(entity);
     }
 }

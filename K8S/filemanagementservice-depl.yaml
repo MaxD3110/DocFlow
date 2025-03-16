@@ -25,7 +25,12 @@ spec:
   selector:
     app: filemanagementservice
   ports:
-    - protocol: TCP
+    - name: filemanagement-tcp-port
+      protocol: TCP
       port: 8080
       targetPort: 8080
+    - name: filemanagement-grpc-port
+      protocol: TCP
+      port: 420
+      targetPort: 420
   

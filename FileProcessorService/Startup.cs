@@ -1,6 +1,7 @@
 using FileProcessorService.AsyncDataServices;
 using FileProcessorService.Data;
 using FileProcessorService.EventProcessing;
+using FileProcessorService.SyncDataServices.Grpc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FileProcessorService;
@@ -18,7 +19,8 @@ public class Startup
     {
         services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("memoryDb"));
 
-        services.AddScoped<IFileLogRepository, FileLogRepository>(); 
+        services.AddScoped<IFileLogRepository, FileLogRepository>();
+        services.AddScoped<IFileManagementDataClient, FileManagementDataClient>();
         services.AddSingleton<IEventProcessor, EventProcessor>();
 
         services.AddHostedService<MessageBusSubscriber>();
@@ -37,6 +39,8 @@ public class Startup
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints => endpoints.MapControllers());
+
+        PrepDb.PrepPopulation(app);
     }
  
 }

@@ -10,6 +10,7 @@ public class ExtensionProfile : Profile
     {
         CreateMap<Extension, ExtensionDto>();
         CreateMap<ExtensionDto, Extension>();
+        CreateMap<Extension, BaseDto>();
         CreateMap<Extension, GrpcFileExtensionModel>()
             .ForMember(dest => dest.ExtensionId, opt => opt.MapFrom(src => src.Id));
     }

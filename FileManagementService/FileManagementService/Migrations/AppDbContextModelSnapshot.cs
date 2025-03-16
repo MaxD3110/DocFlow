@@ -22,6 +22,21 @@ namespace FileManagementService.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("ExtensionConversion", b =>
+                {
+                    b.Property<int>("SourceExtensionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TargetExtensionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SourceExtensionId", "TargetExtensionId");
+
+                    b.HasIndex("TargetExtensionId");
+
+                    b.ToTable("ExtensionConversion");
+                });
+
             modelBuilder.Entity("FileManagementService.Models.Extension", b =>
                 {
                     b.Property<int>("Id")
@@ -30,11 +45,11 @@ namespace FileManagementService.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ExtensionName")
+                    b.Property<string>("FilenameExtension")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Format")
+                    b.Property<string>("MediaType")
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -59,9 +74,6 @@ namespace FileManagementService.Migrations
                     b.Property<long>("FileSize")
                         .HasColumnType("bigint");
 
-                    b.Property<bool>("IsConverted")
-                        .HasColumnType("boolean");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
@@ -76,6 +88,21 @@ namespace FileManagementService.Migrations
                     b.HasIndex("ExtensionId");
 
                     b.ToTable("Files");
+                });
+
+            modelBuilder.Entity("ExtensionConversion", b =>
+                {
+                    b.HasOne("FileManagementService.Models.Extension", null)
+                        .WithMany()
+                        .HasForeignKey("SourceExtensionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FileManagementService.Models.Extension", null)
+                        .WithMany()
+                        .HasForeignKey("TargetExtensionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FileManagementService.Models.FileModel", b =>

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "FileManagementService";
+
+service GrpcFileExtension {
+  rpc GetAllFileExtensions (GetAllFileExtensionsRequest) returns (FileExtensionResponse);
+}
+
+message GetAllFileExtensionsRequest {}
+
+message GrpcFileExtensionModel {
+  int32 extensionId = 1;
+  string name = 2;
+  string filenameExtension = 3;
+  string mediaType = 4;
+}
+
+message FileExtensionResponse {
+  repeated GrpcFileExtensionModel extension = 1;
+}

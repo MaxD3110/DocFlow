@@ -121,3 +121,7 @@ D:\Projects\DocFlow\FileProcessorService\obj\Debug\net9.0\FileProcessorService.p
 D:\Projects\DocFlow\FileProcessorService\obj\Debug\net9.0\FileProcessorService.genruntimeconfig.cache
 D:\Projects\DocFlow\FileProcessorService\obj\Debug\net9.0\ref\FileProcessorService.dll
 D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\RabbitMQ.Client.dll
+D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Google.Protobuf.dll
+D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Grpc.Core.Api.dll
+D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Grpc.Net.Client.dll
+D:\Projects\DocFlow\FileProcessorService\bin\Debug\net9.0\Grpc.Net.Common.dll

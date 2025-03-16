@@ -2,7 +2,9 @@ namespace FileManagementService.DTOs;
 
 public class ExtensionDto : BaseDto
 {
-    public string ExtensionName { get; set; }
+    public string MediaType { get; set; }
     
-    public string? Format { get; set; }
+    public string? FilenameExtension { get; set; }
+    
+    public List<BaseDto> ConvertibleTo { get; set; } = [];
 }
