@@ -2,21 +2,31 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FileData } from "../types/File";
 import { FolderArrowDownIcon, XMarkIcon } from '@heroicons/react/20/solid'
+import Dropdown from "./Dropdown";
+import Checkbox from "./Checkbox";
 
 const FileList = ({ refresh }: { refresh: boolean }) => {
     const [files, setFiles] = useState<FileData[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
+    const [selectedFiles, setSelectedFiles] = useState<number[]>([]);
+
+    useEffect(() => {
+        fetchFiles();
+    }, [refresh]); // Reload when refresh changes
 
     const fetchFiles = async () => {
         setLoading(true);
+        
         try {
             const response = await axios.get<FileData[]>("/api/files");
             setFiles(response.data);
         } catch (error) {
             setError("Failed to load files.");
         }
+
         setLoading(false);
+        setSelectedFiles([]);
     };
 
     const deleteFile = async (id: number) => {
@@ -29,21 +39,54 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
         fetchFiles();
     }
 
-    const convertFile = async (id: number) => {
+    const deleteSelectedFiles = async () =>{
         try {
-            await axios.delete<number>(`/api/files/${id}`);
+            await axios.post("/api/files/bulkDelete", selectedFiles, { headers: { "Content-Type": "application/json" }});
         } catch (error) {
             setError("Failed to delete file.");
         }
+
+        fetchFiles();
     }
 
-    useEffect(() => {
-        fetchFiles();
-    }, [refresh]); // Reload when refresh changes
+    const toggleSelection = (fileId: number, isChecked: boolean) => {
+        setSelectedFiles((prevSelected) =>
+            isChecked ? [...prevSelected, fileId] : prevSelected.filter((id) => id !== fileId)
+        );
+    };
+
+    const toggleAllSelection = (isChecked: boolean) => {
+        setSelectedFiles(() => isChecked ? files.map(file => file.id) : []);
+    };
+
+    const isAllSelected = files.length > 0 && selectedFiles.length === files.length;
 
     return (
         <div className="mx-auto mt-8">
             <h2 className="text-2xl font-semibold center text-gray-800 mb-4">📂 Uploaded Files</h2>
+
+            <div
+                className="py-2 gap-1 justify-end flex transition duration-75"
+                style={selectedFiles.length === 0 ? { opacity: '0%' } : { opacity: '100%' }}>
+
+                <button
+                    onClick={() => console.log(selectedFiles)}
+                    className="mt-4 px-4 py-2 bg-transparent text-gray-800 border-2 rounded hover:border-blue-600 hover:text-blue-600 duration-150"
+                    disabled={selectedFiles.length === 0}
+                >
+                    Convert all to
+                </button>
+
+                <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-900 duration-150 cursor-pointer">
+                    Download all
+                </button>
+
+                <button
+                    className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-900 duration-150 cursor-pointer"
+                    onClick={() => deleteSelectedFiles()}>
+                    Delete all
+                </button>
+            </div>
 
             {/* Loading State */}
             {loading && <p className="text-blue-500 text-center">Loading files...</p>}
@@ -56,6 +99,13 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
                 <table className="w-full rounded-lg overflow-hidden">
                     <thead className="bg-blue-100 text-gray-700 uppercase text-sm">
                         <tr>
+                            <th className="py-2 px-4 text-center">
+                                <Checkbox
+                                    label=""
+                                    checked={isAllSelected}
+                                    onChange={(checked) => toggleAllSelection(checked)}
+                                />
+                            </th>
                             <th className="py-2 px-4 text-center">File Name</th>
                             <th className="py-2 px-4 text-center">File Type</th>
                             <th className="py-2 px-4 text-center">Size (KB)</th>
@@ -69,6 +119,13 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
                         {files.length > 0 ? (
                             files.map((file) => (
                                 <tr key={file.id} className="hover:bg-blue-50 transition">
+                                    <td className="py-2 px-4 text-center">
+                                        <Checkbox
+                                            label=""
+                                            checked={selectedFiles.includes(file.id)}
+                                            onChange={(checked) => toggleSelection(file.id, checked)}
+                                        />
+                                    </td>
                                     <td className="py-2 px-4 text-center">{file.name}</td>
                                     <td className="py-2 px-4 text-center">{file.extensionName}</td>
                                     <td className="py-2 px-4 text-center">
@@ -76,7 +133,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
                                     </td>
                                     <td className="py-2 px-4 text-center">{new Date(file.uploadedAt).toLocaleString()}</td>
                                     <td className="py-2 px-4 text-center">
-                                        <button onClick={() => convertFile(file.id)}>Convert</button>
+                                        <Dropdown id={file.id} convertibleTo={file.extension.convertibleTo} />
                                     </td>
                                     <td className="py-2 px-4 text-center">
                                         <a href={file.storagePath} download>

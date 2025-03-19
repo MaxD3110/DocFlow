@@ -30,6 +30,8 @@ const FileUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
     } catch (error) {
       setMessage("Upload failed");
     }
+
+    setFile(null);
   };
 
   return (

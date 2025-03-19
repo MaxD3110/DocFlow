@@ -133,6 +133,35 @@ public class FilesController : ControllerBase
 
         return Ok();
     }
+
+    [HttpPost("bulkDelete")]
+    public async Task<IActionResult> BulkDelete([FromBody] List<int> fileIds)
+    {
+        var files = await _fileRepository.Query()
+            .Where(i => fileIds.Contains(i.Id))
+            .ToListAsync();
+        
+        if (!files.Any())
+            return NotFound();
+
+        foreach (var file in files)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(file.StoragePath))
+                    System.IO.File.Delete(file.StoragePath);
+            
+                await _fileRepository.DeleteAsync(file);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest();
+            }
+        }
+
+        return Ok();
+    }
     
     [HttpPost]
     public async Task<IActionResult> CreateFile(FileDto file)
