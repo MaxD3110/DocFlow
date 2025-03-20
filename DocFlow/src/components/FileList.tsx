@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FileData } from "../types/File";
-import { FolderArrowDownIcon, XMarkIcon } from '@heroicons/react/20/solid'
+import { FolderArrowDownIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
+import Popup from "./Popup";
 
 const FileList = ({ refresh }: { refresh: boolean }) => {
     const [files, setFiles] = useState<FileData[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
     const [selectedFiles, setSelectedFiles] = useState<number[]>([]);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     useEffect(() => {
         fetchFiles();
@@ -17,7 +19,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
 
     const fetchFiles = async () => {
         setLoading(true);
-        
+
         try {
             const response = await axios.get<FileData[]>("/api/files");
             setFiles(response.data);
@@ -39,11 +41,11 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
         fetchFiles();
     }
 
-    const deleteSelectedFiles = async () =>{
+    const deleteSelectedFiles = async () => {
         try {
-            await axios.post("/api/files/bulkDelete", selectedFiles, { headers: { "Content-Type": "application/json" }});
+            await axios.post("/api/files/bulkDelete", selectedFiles, { headers: { "Content-Type": "application/json" } });
         } catch (error) {
-            setError("Failed to delete file.");
+            setError("Failed to delete files.");
         }
 
         fetchFiles();
@@ -60,9 +62,20 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
     };
 
     const isAllSelected = files.length > 0 && selectedFiles.length === files.length;
+    const uniqueExtensions = Array.from(
+        new Map(
+            files
+                .filter(file => selectedFiles.includes(file.id))
+                .map(file => [file.extension.id, file.extension])
+        ).values()
+    );
 
     return (
         <div className="mx-auto mt-8">
+            {files.length > 0 && (
+                <Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} selectedExtensions={uniqueExtensions} />
+            )}
+
             <h2 className="text-2xl font-semibold center text-gray-800 mb-4">📂 Uploaded Files</h2>
 
             <div
@@ -70,7 +83,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
                 style={selectedFiles.length === 0 ? { opacity: '0%' } : { opacity: '100%' }}>
 
                 <button
-                    onClick={() => console.log(selectedFiles)}
+                    onClick={() => setIsPopupOpen(true)}
                     className="mt-4 px-4 py-2 bg-transparent text-gray-800 border-2 rounded hover:border-blue-600 hover:text-blue-600 duration-150"
                     disabled={selectedFiles.length === 0}
                 >
