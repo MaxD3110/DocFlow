@@ -1,2 +1,0 @@
-obj\Debug\net9.0\Protos/Filemanagement.cs \
-obj\Debug\net9.0\Protos/FilemanagementGrpc.cs: Protos/filemanagement.proto
