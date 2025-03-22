@@ -4,16 +4,13 @@ import { FileData } from "../types/File";
 import { FolderArrowDownIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
-import Popup from "./Popup";
-import { useServiceStatuses } from "./ServiceStatusProvider";
+import MassOperationsPanel from "./MassOperationsPanel";
 
 const FileList = ({ refresh }: { refresh: boolean }) => {
     const [files, setFiles] = useState<FileData[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
-    const [selectedFiles, setSelectedFiles] = useState<number[]>([]);
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const statuses = useServiceStatuses();
+    const [selectedFileIds, setSelectedFileIds] = useState<number[]>([]);
 
     useEffect(() => {
         fetchFiles();
@@ -30,7 +27,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
         }
 
         setLoading(false);
-        setSelectedFiles([]);
+        setSelectedFileIds([]);
     };
 
     const deleteFile = async (id: number) => {
@@ -43,65 +40,25 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
         fetchFiles();
     }
 
-    const deleteSelectedFiles = async () => {
-        try {
-            await axios.post("/api/files/bulkDelete", selectedFiles, { headers: { "Content-Type": "application/json" } });
-        } catch (error) {
-            setError("Failed to delete files.");
-        }
-
-        fetchFiles();
-    }
-
     const toggleSelection = (fileId: number, isChecked: boolean) => {
-        setSelectedFiles((prevSelected) =>
+        setSelectedFileIds((prevSelected) =>
             isChecked ? [...prevSelected, fileId] : prevSelected.filter((id) => id !== fileId)
         );
     };
 
     const toggleAllSelection = (isChecked: boolean) => {
-        setSelectedFiles(() => isChecked ? files.map(file => file.id) : []);
+        setSelectedFileIds(() => isChecked ? files.map(file => file.id) : []);
     };
 
-    const isAllSelected = files.length > 0 && selectedFiles.length === files.length;
-    const uniqueExtensions = Array.from(
-        new Map(
-            files
-                .filter(file => selectedFiles.includes(file.id))
-                .map(file => [file.extension.id, file.extension])
-        ).values()
-    );
+    const isAllSelected = files.length > 0 && selectedFileIds.length === files.length;
 
     return (
         <div className="mx-auto mt-8">
-            {files.length > 0 && (
-                <Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} selectedExtensions={uniqueExtensions} />
+            {selectedFileIds.length > 0 ? (
+                <MassOperationsPanel files={files} selectedFileIds={selectedFileIds} setError={setError} refreshTable={fetchFiles} />
+            ) : (
+                <div className="mt-32"></div>
             )}
-
-            <h2 className="text-2xl font-semibold center text-gray-800 mb-4">📂 Uploaded Files</h2>
-
-            <div
-                className="py-2 gap-1 justify-end flex transition duration-75"
-                style={selectedFiles.length === 0 ? { opacity: '0%' } : { opacity: '100%' }}>
-
-                <button
-                    onClick={() => setIsPopupOpen(true)}
-                    className="mt-4 px-4 py-2 bg-transparent text-gray-800 border-2 rounded disabled:border-gray-300 disabled:text-gray-300 hover:border-blue-600 hover:text-blue-600 duration-150"
-                    disabled={!statuses.processor || selectedFiles.length === 0}
-                >
-                    Convert all to
-                </button>
-
-                <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-900 duration-150 cursor-pointer">
-                    Download all
-                </button>
-
-                <button
-                    className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-900 duration-150 cursor-pointer"
-                    onClick={() => deleteSelectedFiles()}>
-                    Delete all
-                </button>
-            </div>
 
             {/* Loading State */}
             {loading && <p className="text-blue-500 text-center">Loading files...</p>}
@@ -111,66 +68,65 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
 
             {/* File Table */}
             <div className="overflow-x-auto">
-                <table className="w-full rounded-lg overflow-hidden">
-                    <thead className="bg-blue-100 text-gray-700 uppercase text-sm">
-                        <tr>
-                            <th className="py-2 px-4 text-center">
+                {files.length > 0 ? (
+                    <div className="w-full rounded-lg overflow-hidden bg-white">
+                        <div className="bg-gray-700 text-gray-100 uppercase text-sm flex justify-between">
+                            <div className="py-2 px-4 text-center">
                                 <Checkbox
-                                    label=""
                                     checked={isAllSelected}
                                     onChange={(checked) => toggleAllSelection(checked)}
                                 />
-                            </th>
-                            <th className="py-2 px-4 text-center">File Name</th>
-                            <th className="py-2 px-4 text-center">File Type</th>
-                            <th className="py-2 px-4 text-center">Size (KB)</th>
-                            <th className="py-2 px-4 text-center">Uploaded at</th>
-                            <th className="py-2 px-4 text-center">Convert</th>
-                            <th className="py-2 px-4 text-center">Download</th>
-                            <th className="py-2 px-4 text-center">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {files.length > 0 ? (
-                            files.map((file) => (
-                                <tr key={file.id} className="hover:bg-blue-50 transition">
-                                    <td className="py-2 px-4 text-center">
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                        <div>
+                            {files.map((file) => (
+                                <div key={file.id} className={`${selectedFileIds.includes(file.id) ? 'bg-blue-50' : 'hover:bg-blue-50'} transition flex gap-3 justify-between`}>
+                                    <div className="file-list-row">
                                         <Checkbox
-                                            label=""
-                                            checked={selectedFiles.includes(file.id)}
+                                            checked={selectedFileIds.includes(file.id)}
                                             onChange={(checked) => toggleSelection(file.id, checked)}
                                         />
-                                    </td>
-                                    <td className="py-2 px-4 text-center">{file.name}</td>
-                                    <td className="py-2 px-4 text-center">{file.extensionName}</td>
-                                    <td className="py-2 px-4 text-center">
-                                        {(file.fileSize / 1024).toFixed(2)}
-                                    </td>
-                                    <td className="py-2 px-4 text-center">{new Date(file.uploadedAt).toLocaleString()}</td>
-                                    <td className="py-2 px-4 text-center">
-                                        <Dropdown id={file.id} convertibleTo={file.extension?.convertibleTo ?? []} />
-                                    </td>
-                                    <td className="py-2 px-4 text-center">
+                                    </div>
+                                    <div className="file-list-row">
+                                        <div className="flex flex-col">
+                                            <span className="font-bold">{file.name}</span>
+                                            <span>{(file.fileSize / 1024).toFixed(2)}</span>
+                                        </div>
+                                    </div>
+                                    <div className="file-list-row">
+                                        <span>{new Date(file.uploadedAt).toLocaleString()}</span>
+                                    </div>
+                                    <div className="file-list-row">
+                                        <Dropdown convertibleTo={file.extension?.convertibleTo ?? []} />
+                                    </div>
+                                    <div className="file-list-row">
                                         <a href={file.storagePath} download>
                                             <FolderArrowDownIcon aria-hidden="true" className="cursor-pointer size-8 text-gray-500 hover:fill-blue-500 transition-colors" />
                                         </a>
-                                    </td>
-                                    <td className="py-2 px-4 text-center">
+                                    </div>
+                                    <div className="file-list-row">
                                         <a onClick={() => deleteFile(file.id)}>
-                                            <XMarkIcon aria-hidden="true" className="cursor-pointer size-8 text-gray-500 hover:fill-red-500 transition-colors" />
+                                            <div className="peer h-8 w-8 cursor-pointer transition-all flex justify-center items-center text-red-400 appearance-none rounded-full bg-red-200 shadow hover:shadow-md hover:bg-red-400 hover:text-red-200">
+                                                <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                                            </div>
                                         </a>
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan={3} className="text-center py-4 text-gray-500">
-                                    No files uploaded yet.
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <div>
+                        <div className="text-center text-2xl font-extrabold py-4 text-gray-700">
+                            No files uploaded yet <br></br>
+                            <b className="text-4xl">...</b>
+                        </div>
+                    </div>
+                )}
+
             </div>
         </div >
     );

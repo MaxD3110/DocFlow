@@ -19,4 +19,24 @@
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }
+
+  .button-standart {
+    cursor: pointer;
+    border-radius: 20px;
+    --tw-duration: 150ms;
+    transition-duration: 150ms;
+    padding-inline: 30px;
+    padding-block: 15px;
+  }
+
+  .file-list-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline-start: 15px;
+  }
+
+  .file-list-row:last-child{
+    margin-inline-end: 15px;
+  }
 }

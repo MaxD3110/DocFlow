@@ -48,7 +48,7 @@ const FileUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
             </label>
             <p className="pl-1">or drag and drop</p>
           </div>
-          <p className="text-xs/5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+          <p className="text-xs/5 text-gray-600">file up to 100MB</p>
         </div>
       </div>
       <p>{message}</p>
