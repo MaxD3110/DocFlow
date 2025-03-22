@@ -1,13 +1,42 @@
 @import "tailwindcss";
+
 @layer components {
-    .color-danger {
-      a {
-        color: var(--color-gray-600) !important;
-        &:hover {
-          color: var(--color-red-600) !important;
-          cursor: pointer;
-          transition: color .2s;
-        }
+  .color-danger {
+    a {
+      color: var(--color-gray-600) !important;
+
+      &:hover {
+        color: var(--color-red-600) !important;
+        cursor: pointer;
+        transition: color .2s;
       }
     }
   }
+
+  .matte-effect {
+    background: rgba(237, 237, 237, 0.7);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .button-standart {
+    cursor: pointer;
+    border-radius: 20px;
+    --tw-duration: 150ms;
+    transition-duration: 150ms;
+    padding-inline: 30px;
+    padding-block: 15px;
+  }
+
+  .file-list-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline-start: 15px;
+  }
+
+  .file-list-row:last-child{
+    margin-inline-end: 15px;
+  }
+}
