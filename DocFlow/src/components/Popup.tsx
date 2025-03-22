@@ -9,15 +9,16 @@ interface PopupProps {
 
 function Popup({ isOpen, setIsOpen, selectedExtensions }: PopupProps) {
   return (
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-        <DialogBackdrop className="fixed inset-0 bg-black/30" />
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-10 focus:outline-none">
+        <DialogBackdrop transition className="fixed inset-0 bg-black/30 matte-effect duration-300" />
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4">
+          <DialogPanel transition className="w-full max-w-md rounded-xl bg-white p-6 duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0">
             <DialogTitle className="font-bold">Multiple files convertation</DialogTitle>
             {selectedExtensions.length > 1 ? (
               <div>
                 <Description>You've chosen files with <b>different</b> extensions: <b>{selectedExtensions.map(i => `${i.name} `)}</b></Description>
-                <p>Considering that, options <b>can be limited</b> by the common available convertation compatibility of this extensions</p>
+                <p>Convertation options <b>can be limited</b> by the common available convertation compatibility of this extensions</p>
               </div>
             ) : (
               <Description>You've chosen files with <b>{selectedExtensions.length > 0 ? selectedExtensions[0].name : ''}</b> extension</Description>
@@ -28,6 +29,7 @@ function Popup({ isOpen, setIsOpen, selectedExtensions }: PopupProps) {
               <button onClick={() => setIsOpen(false)}>Convert</button>
             </div>
           </DialogPanel>
+          </div>
         </div>
       </Dialog>
   )

@@ -1,17 +1,22 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { ExtensionData } from '../types/Extension';
+import { ConvertibleToExtension } from '../types/ConvertibleToExtension';
+import { useServiceStatuses } from './ServiceStatusProvider';
 
 interface DropdownProps {
   id: number,
-  convertibleTo: ExtensionData[]
+  convertibleTo: ConvertibleToExtension[]
 }
 
 const Dropdown = ({ id, convertibleTo }: DropdownProps) => {
+  const statuses = useServiceStatuses();
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
+        <MenuButton
+          disabled={!statuses.processor}
+          className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50, disabled:text-gray-300">
           Convert to
           <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" />
         </MenuButton>

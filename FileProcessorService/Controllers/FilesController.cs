@@ -19,14 +19,6 @@ public class FilesController : ControllerBase
     }
     
     [HttpGet]
-    [Route("Ping")]
-    public IActionResult PingInboundConnection()
-    {
-        Console.WriteLine("-- Testing processor connection");
-        return Ok("Connection established");
-    }
-    
-    [HttpGet]
     [Route("GetLogs")]
     public async Task<IActionResult> GetLogs()
     {

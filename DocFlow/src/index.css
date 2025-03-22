@@ -27,7 +27,6 @@ body {
   display: flex;
   justify-content: center;
   min-width: 320px;
-  padding: 20px;
 }
 
 h1 {

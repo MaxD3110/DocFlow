@@ -163,28 +163,14 @@ public class FilesController : ControllerBase
         return Ok();
     }
     
-    [HttpPost]
-    public async Task<IActionResult> CreateFile(FileDto file)
+    [HttpPost("ConvertFile")]
+    public async Task<IActionResult> ConvertFile(int fileId, int extensionId)
     {
-        var fileModel = _mapper.Map<FileModel>(file);
-
-        await _fileRepository.CreateAsync(fileModel);
-        
-        var fileModelToDto = _mapper.Map<FileDto>(fileModel);
+        var file = await _fileRepository.GetByIdAsync(fileId);
 
         try
         {
-            await _processorDataClient.SendFileToProcessorAsync(fileModelToDto);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Could not send file to processor: {e.Message}");
-            throw;
-        }
-
-        try
-        {
-            var fileToConvert = _mapper.Map<FileToConvertDto>(fileModelToDto);
+            var fileToConvert = _mapper.Map<FileToConvertDto>(file);
 
             fileToConvert.Event = "FileAwaitConvertation";
 
@@ -196,6 +182,6 @@ public class FilesController : ControllerBase
             throw;
         }
 
-        return CreatedAtRoute(nameof(GetFileById), new { id = fileModel.Id }, fileModelToDto);
+        return Ok();
     }
 }

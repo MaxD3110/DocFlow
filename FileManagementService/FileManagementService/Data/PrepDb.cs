@@ -24,20 +24,7 @@ public static class PrepDb
             Console.WriteLine(e);
             throw;
         }
-        
-        if (!context.Files.Any())
-        {
-            Console.WriteLine("Creating mock data");
 
-            context.Files.AddRange(
-                new FileModel {Name = "11111"},
-                new FileModel {Name = "22222"},
-                new FileModel {Name = "3333"},
-                new FileModel {Name = "4444"});
-            
-            context.SaveChanges();
-        }
-        else
-            Console.WriteLine("DB is ready");
+        Console.WriteLine("DB is ready");
     }
 }

@@ -1,18 +1,25 @@
 import { useState } from "react";
 import FileList from "./components/FileList";
 import FileUpload from "./components/FileUpload";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { ServiceStatusProvider } from "./components/ServiceStatusProvider";
 
 const App = () => {
   const [refresh, setRefresh] = useState(false);
 
   return (
-    <div className="min-w-full">
-      <h1 className="center">DocFlow</h1>
+    <ServiceStatusProvider>
+      <Header />
+      <div className="pt-20 px-10">
+        <h1 className="center">DocFlow</h1>
 
-      <FileUpload onUploadSuccess={() => setRefresh(!refresh)} />
+        <FileUpload onUploadSuccess={() => setRefresh(!refresh)} />
 
-      <FileList refresh={refresh} />
-    </div>
+        <FileList refresh={refresh} />
+      </div>
+      <Footer />
+    </ServiceStatusProvider>
   );
 };
 

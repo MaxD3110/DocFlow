@@ -5,6 +5,7 @@ import { FolderArrowDownIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
 import Popup from "./Popup";
+import { useServiceStatuses } from "./ServiceStatusProvider";
 
 const FileList = ({ refresh }: { refresh: boolean }) => {
     const [files, setFiles] = useState<FileData[]>([]);
@@ -12,6 +13,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
     const [error, setError] = useState<string>("");
     const [selectedFiles, setSelectedFiles] = useState<number[]>([]);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const statuses = useServiceStatuses();
 
     useEffect(() => {
         fetchFiles();
@@ -84,8 +86,8 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
 
                 <button
                     onClick={() => setIsPopupOpen(true)}
-                    className="mt-4 px-4 py-2 bg-transparent text-gray-800 border-2 rounded hover:border-blue-600 hover:text-blue-600 duration-150"
-                    disabled={selectedFiles.length === 0}
+                    className="mt-4 px-4 py-2 bg-transparent text-gray-800 border-2 rounded disabled:border-gray-300 disabled:text-gray-300 hover:border-blue-600 hover:text-blue-600 duration-150"
+                    disabled={!statuses.processor || selectedFiles.length === 0}
                 >
                     Convert all to
                 </button>
@@ -146,7 +148,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
                                     </td>
                                     <td className="py-2 px-4 text-center">{new Date(file.uploadedAt).toLocaleString()}</td>
                                     <td className="py-2 px-4 text-center">
-                                        <Dropdown id={file.id} convertibleTo={file.extension.convertibleTo} />
+                                        <Dropdown id={file.id} convertibleTo={file.extension?.convertibleTo ?? []} />
                                     </td>
                                     <td className="py-2 px-4 text-center">
                                         <a href={file.storagePath} download>
