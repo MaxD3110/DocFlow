@@ -27,7 +27,7 @@ body {
   display: flex;
   justify-content: center;
   min-width: 320px;
-  background-color: #f7f7f7;
+  background-color: #efefef;
 }
 
 h1 {
@@ -35,11 +35,6 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  font-size: 1em;
-  font-weight: 500;
-  cursor: pointer;
-}
 
 @media (prefers-color-scheme: light) {
   :root {

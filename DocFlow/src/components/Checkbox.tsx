@@ -11,7 +11,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange }) => {
       <label className="flex items-center cursor-pointer relative">
         <input
           type="checkbox"
-          className="peer h-8 w-8 cursor-pointer transition-all appearance-none rounded-full bg-white shadow hover:shadow-md border border-slate-300 checked:bg-blue-500 checked:border-blue-500"
+          className="peer h-8 w-8 cursor-pointer transition-all appearance-none rounded-full bg-white shadow hover:shadow-md border border-slate-300 checked:bg-lavender checked:border-lavender"
           checked={checked}
           onChange={(e) => onChange(e.target.checked)} />
         <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">

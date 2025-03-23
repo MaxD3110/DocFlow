@@ -12,9 +12,6 @@ const App = () => {
     <ServiceStatusProvider>
       <Header />
       <div className="pt-20 px-10">
-        <h1 className="center">DocFlow</h1>
-
-        <FileUpload onUploadSuccess={() => setRefresh(!refresh)} />
 
         <FileList refresh={refresh} />
       </div>

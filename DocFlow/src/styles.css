@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --color-lavender: #C589E8;
+  --color-magenta: #963D5A;
+  --color-verdigris: #50C5B7
+}
+
 @layer components {
   .color-danger {
     a {
@@ -11,6 +17,10 @@
         transition: color .2s;
       }
     }
+  }
+
+  button {
+    cursor: pointer;
   }
 
   .matte-effect {
@@ -29,14 +39,14 @@
     padding-block: 15px;
   }
 
-  .file-list-row {
+  .file-list-column {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-inline-start: 15px;
   }
 
-  .file-list-row:last-child{
+  .file-list-column:last-child {
     margin-inline-end: 15px;
   }
 }
