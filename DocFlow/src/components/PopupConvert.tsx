@@ -1,13 +1,13 @@
 import { Description, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ConvertibleToExtension } from '../types/ConvertibleToExtension';
 
-interface PopupProps {
+interface PopupConvertProps {
   isOpen: boolean,
   setIsOpen: (open: boolean) => void,
   selectedExtensions: ConvertibleToExtension[]
 }
 
-function Popup({ isOpen, setIsOpen, selectedExtensions }: PopupProps) {
+function PopupConvert({ isOpen, setIsOpen, selectedExtensions }: PopupConvertProps) {
   return (
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-10 focus:outline-none">
         <DialogBackdrop transition className="fixed inset-0 bg-black/30 matte-effect duration-300" />
@@ -35,4 +35,4 @@ function Popup({ isOpen, setIsOpen, selectedExtensions }: PopupProps) {
   )
 }
 
-export default Popup;
+export default PopupConvert;

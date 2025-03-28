@@ -1,16 +1,23 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FileData } from "../types/File";
-import { FolderArrowDownIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import { CloudArrowDownIcon, CloudArrowUpIcon, XCircleIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import Dropdown from "./Dropdown";
 import Checkbox from "./Checkbox";
 import MassOperationsPanel from "./MassOperationsPanel";
+import PopupUpload from "./PopupUpload";
+import { ArrowPathRoundedSquareIcon } from "@heroicons/react/20/solid";
+import { useServiceStatuses } from "./ServiceStatusProvider";
+import Popup from "./PopupConvert";
 
 const FileList = ({ refresh }: { refresh: boolean }) => {
     const [files, setFiles] = useState<FileData[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
     const [selectedFileIds, setSelectedFileIds] = useState<number[]>([]);
+    const [isPopupUploadOpen, setIsPopupUploadOpen] = useState(false);
+    const [isPopupConvertOpen, setIsPopupConvertOpen] = useState(false);
+    const statuses = useServiceStatuses();
 
     useEffect(() => {
         fetchFiles();
@@ -28,6 +35,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
 
         setLoading(false);
         setSelectedFileIds([]);
+        setIsPopupUploadOpen(false)
     };
 
     const deleteFile = async (id: number) => {
@@ -46,89 +54,107 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
         );
     };
 
-    const toggleAllSelection = (isChecked: boolean) => {
-        setSelectedFileIds(() => isChecked ? files.map(file => file.id) : []);
-    };
+    function fileSize(bytes: number) {
+        if (bytes == 0) { return "0.00 B"; }
+        var e = Math.floor(Math.log(bytes) / Math.log(1024));
+        return (bytes / Math.pow(1024, e)).toFixed(2) + ' ' + ' KMGTP'.charAt(e) + 'B';
+    }
 
-    const isAllSelected = files.length > 0 && selectedFileIds.length === files.length;
+    const uniqueExtensions = Array.from(
+        new Map(
+            files
+                .filter(file => selectedFileIds.includes(file.id))
+                .map(file => [file.extension.id, file.extension])
+        ).values()
+    );
 
     return (
-        <div className="mx-auto mt-8">
-            {selectedFileIds.length > 0 ? (
-                <MassOperationsPanel files={files} selectedFileIds={selectedFileIds} setError={setError} refreshTable={fetchFiles} />
-            ) : (
-                <div className="mt-32"></div>
+        <div className="mx-auto mt-48">
+            <PopupUpload onUploadSuccess={() => fetchFiles()} isOpen={isPopupUploadOpen} setIsOpen={setIsPopupUploadOpen} />
+            <Popup isOpen={isPopupConvertOpen} setIsOpen={setIsPopupConvertOpen} selectedExtensions={uniqueExtensions} />
+            {/* File Table */}
+            {(!error && !loading) && (
+                <div className="overflow-x-auto">
+                    {files.length > 0 ? (
+                        <div>
+                            <div className="flex justify-between">
+                                <button
+                                    className="mb-3 p-3 flex gap-2 font-bold items-center rounded-4xl max-w-100 bg-lavender text-white hover:bg-white hover:text-lavender duration-150"
+                                    onClick={() => setIsPopupUploadOpen(!isPopupUploadOpen)}>
+                                    <CloudArrowUpIcon aria-hidden="true" className="h-6 w-6" /> Upload file
+                                </button>
+                                <button
+                                    className="mb-3 p-3 flex gap-2 items-center text-base font-bold max-w-100 rounded-4xl bg-verdigris text-white hover:bg-white hover:text-verdigris duration-150"
+                                    onClick={() => setIsPopupConvertOpen(!isPopupConvertOpen)}>
+                                    <ArrowPathRoundedSquareIcon aria-hidden="true" className="h-6 w-6" />
+                                    <span>Convert files</span>
+                                </button>
+                            </div>
+                            <div className="w-full rounded-2xl overflow-hidden bg-white">
+                                <MassOperationsPanel files={files} selectedFileIds={selectedFileIds} setError={setError} setSelectedFileIds={setSelectedFileIds} refreshTable={fetchFiles} />
+                                <div>
+                                    {files.map((file) => (
+                                        <div
+                                            key={file.id}
+                                            className={`${selectedFileIds.includes(file.id) ? 'bg-purple-100 border-b-purple-100' : 'hover:bg-purple-100 hover:border-b-purple-100'}
+                                            py-2 transition flex gap-3 justify-between border-b-gray-100 border-b-2`}>
+                                            <div className="file-list-column">
+                                                <Checkbox
+                                                    checked={selectedFileIds.includes(file.id)}
+                                                    onChange={(checked) => toggleSelection(file.id, checked)}
+                                                />
+                                            </div>
+                                            <div className="file-list-column">
+                                                <div className="flex flex-col text-gray-700">
+                                                    <span className="font-bold">{file.name}</span>
+                                                    <span>{fileSize(file.fileSize)}</span>
+                                                </div>
+                                            </div>
+                                            <div className="file-list-column text-gray-700">
+                                                <span>{new Date(file.uploadedAt).toLocaleString("en-us", { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', hour12: false, minute: 'numeric' })}</span>
+                                            </div>
+                                            <div className="file-list-column gap-11">
+                                                <Dropdown convertibleTo={file.extension?.convertibleTo ?? []} />
+                                                <a href={file.storagePath} download>
+                                                    <CloudArrowDownIcon aria-hidden="true" className="cursor-pointer size-8 text-gray-500 hover:fill-lavender transition-colors" />
+                                                </a>
+                                                <a onClick={() => deleteFile(file.id)}>
+                                                    <div className="peer h-8 w-8 cursor-pointer transition-all flex justify-center items-center text-red-400 appearance-none rounded-full bg-red-200 shadow hover:shadow-md hover:bg-red-400 hover:text-red-200">
+                                                        <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="text-center font-extrabold py-4 text-gray-700 flex flex-col justify-center items-center">
+                            <span className="mb-20 text-2xl">No files uploaded yet</span>
+                            <button
+                                className="p-6 flex flex-col items-center rounded-4xl max-w-100 bg-lavender text-white hover:bg-white hover:text-lavender duration-150"
+                                onClick={() => setIsPopupUploadOpen(!isPopupUploadOpen)}>
+                                <CloudArrowUpIcon aria-hidden="true" className="h-10 w-10" /> Upload your first file
+                            </button>
+                        </div>
+                    )}
+                </div>
             )}
 
-            {/* Loading State */}
-            {loading && <p className="text-blue-500 text-center">Loading files...</p>}
+            <div className="flex justify-center text-center font-extrabold py-4 text-3xl">
+                {/* Loading State */}
+                {loading && <p className="text-gray-700 text-center">Loading files...</p>}
 
-            {/* Error Message */}
-            {error && <p className="text-red-500 text-center">{error}</p>}
-
-            {/* File Table */}
-            <div className="overflow-x-auto">
-                {files.length > 0 ? (
-                    <div className="w-full rounded-lg overflow-hidden bg-white">
-                        <div className="bg-gray-700 text-gray-100 uppercase text-sm flex justify-between">
-                            <div className="py-2 px-4 text-center">
-                                <Checkbox
-                                    checked={isAllSelected}
-                                    onChange={(checked) => toggleAllSelection(checked)}
-                                />
-                            </div>
-                            <div>
-
-                            </div>
-                        </div>
-                        <div>
-                            {files.map((file) => (
-                                <div key={file.id} className={`${selectedFileIds.includes(file.id) ? 'bg-blue-50' : 'hover:bg-blue-50'} transition flex gap-3 justify-between`}>
-                                    <div className="file-list-row">
-                                        <Checkbox
-                                            checked={selectedFileIds.includes(file.id)}
-                                            onChange={(checked) => toggleSelection(file.id, checked)}
-                                        />
-                                    </div>
-                                    <div className="file-list-row">
-                                        <div className="flex flex-col">
-                                            <span className="font-bold">{file.name}</span>
-                                            <span>{(file.fileSize / 1024).toFixed(2)}</span>
-                                        </div>
-                                    </div>
-                                    <div className="file-list-row">
-                                        <span>{new Date(file.uploadedAt).toLocaleString()}</span>
-                                    </div>
-                                    <div className="file-list-row">
-                                        <Dropdown convertibleTo={file.extension?.convertibleTo ?? []} />
-                                    </div>
-                                    <div className="file-list-row">
-                                        <a href={file.storagePath} download>
-                                            <FolderArrowDownIcon aria-hidden="true" className="cursor-pointer size-8 text-gray-500 hover:fill-blue-500 transition-colors" />
-                                        </a>
-                                    </div>
-                                    <div className="file-list-row">
-                                        <a onClick={() => deleteFile(file.id)}>
-                                            <div className="peer h-8 w-8 cursor-pointer transition-all flex justify-center items-center text-red-400 appearance-none rounded-full bg-red-200 shadow hover:shadow-md hover:bg-red-400 hover:text-red-200">
-                                                <XMarkIcon aria-hidden="true" className="h-6 w-6" />
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                {/* Error Message */}
+                {error &&
+                    <div className="flex justify-center items-center flex-col">
+                        <XCircleIcon aria-hidden="true" className="h-12 w-12 text-red-500" />
+                        <p className="text-red-500 text-center">{error}</p>
                     </div>
-                ) : (
-                    <div>
-                        <div className="text-center text-2xl font-extrabold py-4 text-gray-700">
-                            No files uploaded yet <br></br>
-                            <b className="text-4xl">...</b>
-                        </div>
-                    </div>
-                )}
-
+                }
             </div>
-        </div >
+        </div>
     );
 };
 

@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
   );
 
   return (
-    <footer className="mt-20 bottom-0 w-full bg-white border-t-gray-200 border-t-1 p-4 flex justify-center space-x-6">
+    <footer className="mt-20 bottom-0 w-full text-white bg-gray-700 border-t-gray-200 border-t-1 p-4 flex justify-center space-x-6">
       <div className="flex items-center gap-1.5">
         Manager Service {getIndicator(statuses.manager)}
       </div>

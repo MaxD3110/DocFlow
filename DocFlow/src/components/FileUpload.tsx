@@ -1,7 +1,12 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import axios from "axios";
+import { ExclamationCircleIcon } from "@heroicons/react/20/solid";
 
-const FileUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
+interface FileUploadProps {
+  onUploadSuccess: () => void
+}
+
+const FileUpload = ({ onUploadSuccess }: FileUploadProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [message, setMessage] = useState<string>("");
 
@@ -51,7 +56,12 @@ const FileUpload = ({ onUploadSuccess }: { onUploadSuccess: () => void }) => {
           <p className="text-xs/5 text-gray-600">file up to 100MB</p>
         </div>
       </div>
-      <p>{message}</p>
+      {message && (
+        <div className="mt-3 px-2 py-2 rounded-2xl bg-red-400 text-white flex gap-2">
+          <ExclamationCircleIcon aria-hidden="true" className="h-6 w-6" />
+          <p className="font-bold">{message}</p>
+        </div>
+      )}
     </div>
   );
 }
