@@ -8,3 +8,4 @@ data:
   POSTGRES_DB: "ps_db"
   POSTGRES_USER: "ps_user"
   POSTGRES_PASSWORD: "pass!word"
+  POSTGRES_INITDB_ARGS: "--auth=trust --auth=md5"

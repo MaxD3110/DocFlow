@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { FileData } from "../types/File";
-import Popup from "./Popup";
-import { useServiceStatuses } from "./ServiceStatusProvider";
 import axios from "axios";
-import Dropdown from "./Dropdown";
-import { ArrowPathRoundedSquareIcon, CloudArrowDownIcon, TrashIcon } from '@heroicons/react/20/solid';
+import { CloudArrowDownIcon, TrashIcon } from '@heroicons/react/20/solid';
 import Checkbox from "./Checkbox";
+import Dropdown from "./Dropdown";
 
 interface MassOperationsPanelProps {
     files: FileData[],
@@ -16,9 +13,6 @@ interface MassOperationsPanelProps {
 }
 
 const MassOperationsPanel = ({ files, selectedFileIds, setError, setSelectedFileIds, refreshTable }: MassOperationsPanelProps) => {
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const statuses = useServiceStatuses();
-
     const uniqueExtensions = Array.from(
         new Map(
             files
@@ -51,7 +45,6 @@ const MassOperationsPanel = ({ files, selectedFileIds, setError, setSelectedFile
 
     return (
         <div className="bg-gray-700 text-gray-100 text-sm flex justify-between items-center content-center">
-            <Popup isOpen={isPopupOpen} setIsOpen={setIsPopupOpen} selectedExtensions={uniqueExtensions} />
             <div className="py-6 pl-4 text-center flex items-center content-center">
                 <Checkbox
                     checked={isAllSelected}
@@ -67,14 +60,9 @@ const MassOperationsPanel = ({ files, selectedFileIds, setError, setSelectedFile
                 </div>
             </div>
             <div className="flex pr-4 gap-3 duration-150" style={selectionMode ? { opacity: '100%' } : { opacity: '0%' }}>
+                <Dropdown convertibleTo={convertibleTo} />
                 <button
-                    className="py-2 flex gap-2 items-center text-base font-black button-standart bg-lavender text-white hover:bg-white hover:text-lavender"
-                    onClick={() => setIsPopupOpen(!isPopupOpen)}>
-                    <ArrowPathRoundedSquareIcon aria-hidden="true" className="h-6 w-6" />
-                    <span>Convert files</span> 
-                </button>
-                <button
-                    className="p-3 rounded-full bg-verdigris text-white hover:bg-white hover:text-verdigris duration-150"
+                    className="p-3 rounded-full bg-lavender text-white hover:bg-white hover:text-lavender duration-150"
                     onClick={() => deleteSelectedFiles()}>
                     <CloudArrowDownIcon aria-hidden="true" className="h-6 w-6" />
                 </button>
