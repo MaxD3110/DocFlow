@@ -1,8 +1,9 @@
+using FileProcessorService.DTOs;
 using FileProcessorService.Models;
 
 namespace FileProcessorService.EventProcessing;
 
 public interface IEventProcessor
 {
-    Task ProccessEventAsync(string message);
+    Task ProccessEventAsync(FileToConvertDto? message);
 }

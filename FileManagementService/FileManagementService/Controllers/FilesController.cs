@@ -18,20 +18,23 @@ public class FilesController : ControllerBase
     private readonly IRepository<Extension> _extensionRepository;
     private readonly IMapper _mapper;
     private readonly IProcessorDataClient _processorDataClient;
-    private readonly IMessageBusClient _messageBusClient;
+    private readonly IEventBus _eventBusClient;
+    private readonly IConfiguration _configuration;
 
     public FilesController(
         IRepository<FileModel> fileRepository,
         IRepository<Extension> extensionRepository,
         IMapper mapper,
         IProcessorDataClient processorDataClient,
-        IMessageBusClient messageBusClient)
+        IEventBus eventBusClient,
+        IConfiguration configuration)
     {
         _fileRepository = fileRepository;
         _extensionRepository = extensionRepository;
         _mapper = mapper;
         _processorDataClient = processorDataClient;
-        _messageBusClient = messageBusClient;
+        _eventBusClient = eventBusClient;
+        _configuration = configuration;
     }
     
     [HttpGet]
@@ -62,7 +65,7 @@ public class FilesController : ControllerBase
     [HttpPost("Upload")]
     public async Task<IActionResult> UploadFile([FromForm] IFormFile file)
     {        
-        var filenameExtension = Path.GetExtension(file.FileName).TrimStart('.'); 
+        var filenameExtension = Path.GetExtension(file.FileName).TrimStart('.');
         var provider = new FileExtensionContentTypeProvider();
 
         if (!provider.TryGetContentType(file.FileName, out string contentType))
@@ -83,10 +86,10 @@ public class FilesController : ControllerBase
             existingExtension = await _extensionRepository.CreateAsync(newExtension);
         }
 
-        var fileName = $"File_{Guid.NewGuid()}.{filenameExtension}";
-        var filePath = Path.Combine("StoredFiles", fileName);
+        var storagePath = _configuration["StoredFilesPath"] ?? string.Empty;
+        var filePath = Path.Combine(storagePath, file.FileName);
 
-        Directory.CreateDirectory("StoredFiles");
+        Directory.CreateDirectory(storagePath);
 
         await using (var stream = new FileStream(filePath, FileMode.Create))
         {
@@ -95,7 +98,7 @@ public class FilesController : ControllerBase
 
         var fileModel = new FileModel
         {
-            Name = fileName,
+            Name = file.FileName,
             Extension = existingExtension,
             FileSize = file.Length,
             StoragePath = filePath,
@@ -105,7 +108,7 @@ public class FilesController : ControllerBase
         await _fileRepository.CreateAsync(fileModel);
         
         if (fileModel.Id == 0)
-            return BadRequest("Не удалось сохранить файл");
+            return BadRequest("Failed to save file");
         
         return Ok(fileModel.Id);
     }
@@ -163,18 +166,22 @@ public class FilesController : ControllerBase
         return Ok();
     }
     
-    [HttpPost("ConvertFile")]
+    [HttpPost("convertFile/{fileId:int}-{extensionId:int}")]
     public async Task<IActionResult> ConvertFile(int fileId, int extensionId)
     {
         var file = await _fileRepository.GetByIdAsync(fileId);
+        
+        if (file == null)
+            return NotFound("File not found");
 
         try
         {
             var fileToConvert = _mapper.Map<FileToConvertDto>(file);
 
-            fileToConvert.Event = "FileAwaitConvertation";
+            fileToConvert.ConvertToExtensionId = extensionId;
+            fileToConvert.Event = ConversionType.PdfToDoc;
 
-            await _messageBusClient.ConvertFile(fileToConvert);
+            await _eventBusClient.RequestFileConversion(fileToConvert);
         }
         catch (Exception e)
         {

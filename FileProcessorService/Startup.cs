@@ -22,12 +22,14 @@ public class Startup
         services.AddScoped<IFileLogRepository, FileLogRepository>();
         services.AddScoped<IExtensionRepository, ExtensionRepository>();
         services.AddScoped<IFileManagementDataClient, FileManagementDataClient>();
+        services.AddScoped<IFileConverter, FileConverter>();
+        
+        // Event bus
+        services.AddSingleton<IEventBus, EventBus>();
         services.AddSingleton<IEventProcessor, EventProcessor>();
-
-        services.AddHostedService<MessageBusSubscriber>();
+        services.AddHostedService<EventBusBackground>();
 
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
         services.AddControllers();
     }
 

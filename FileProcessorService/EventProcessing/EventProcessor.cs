@@ -1,5 +1,7 @@
 using System.Text.Json;
 using AutoMapper;
+using FileManagementService;
+using FileProcessorService.AsyncDataServices;
 using FileProcessorService.Data;
 using FileProcessorService.DTOs;
 using FileProcessorService.Models;
@@ -17,59 +19,49 @@ public class EventProcessor : IEventProcessor
         _mapper = mapper;
     }
     
-    public async Task ProccessEventAsync(string message)
-    {
-        var eventType = DetermineEventType(message);
-
-        switch (eventType)
-        {
-            case EventType.FileAwaitConvertation:
-                await ConvertFile(message);
-                break;
-            default:
-                Console.WriteLine("Undetermined event type");
-                break;
-        }
-    }
-
-    private async Task ConvertFile(string fileToConvertMessage)
+    public async Task ProccessEventAsync(FileToConvertDto? file)
     {
         using (var scope = _scopeFactory.CreateScope())
         {
-            var repo = scope.ServiceProvider.GetRequiredService<IFileLogRepository>();
+            var fileLogRepository = scope.ServiceProvider.GetRequiredService<IFileLogRepository>();
+            var fileConverter = scope.ServiceProvider.GetRequiredService<IFileConverter>();
+            var eventBus = scope.ServiceProvider.GetRequiredService<IEventBus>();
 
-            var fileToConvertDto = JsonSerializer.Deserialize<FileToConvertDto>(fileToConvertMessage);
+            if (file == null)
+                return;
 
             try
             {
-                var log = _mapper.Map<FileLogModel>(fileToConvertDto);
-                await repo.SaveFileLogAsync(log);
-                await repo.SaveChangesAsync();
+                byte[] fileBytes = [];
+            
+                switch (file.Event)
+                {
+                    case ConversionType.PdfToDoc:
+                        fileBytes = await fileConverter.ConvertPdfToDoc(file.StoragePath);
+                        break;
+                    case ConversionType.Unknown:
+                    case ConversionType.DocToPdf:
+                    case ConversionType.ImageToPng:
+                    case ConversionType.PngToJpeg:
+                    case ConversionType.Mp3ToWav:
+                    default:
+                        Console.WriteLine("--> EventProcessor: Undetermined media type");
+                        return;
+                }
+
+                var convertedFile = new FileConvertedDto();
+
+                await eventBus.SendConversionResult(convertedFile);
+                
+                var log = _mapper.Map<FileLogModel>(file);
+                await fileLogRepository.SaveFileLogAsync(log);
+                await fileLogRepository.SaveChangesAsync();
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Failed to save file to log {e.Message}");
+                Console.WriteLine($"--> EventProcessor: Failed to save file to log {e.Message}");
                 throw;
             }
         }
-    }
-
-    private EventType DetermineEventType(string message)
-    {
-        Console.WriteLine("Determine Event");
-        
-        var eventType = JsonSerializer.Deserialize<GenericEventDto>(message);
-
-        return eventType?.Event switch
-        {
-            "FileAwaitConvertation" => EventType.FileAwaitConvertation,
-            _ => EventType.Undetermined
-        };
-    }
-
-    enum EventType
-    {
-        FileAwaitConvertation,
-        Undetermined
     }
 }

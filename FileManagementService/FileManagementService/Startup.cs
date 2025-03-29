@@ -21,10 +21,12 @@ public class Startup
             opt.UseNpgsql(Configuration.GetConnectionString("ManagementConnection")));
 
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-        services.AddSingleton<IMessageBusClient, MessageBusClient>();
+        
+        // Event bus
+        services.AddSingleton<IEventBus, EventBus>();
+        services.AddHostedService<EventBusBackground>();
 
         services.AddGrpc();
-
         services.AddHttpClient<IProcessorDataClient, HttpProcessorDataClient>();
 
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
