@@ -30,7 +30,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
             const response = await axios.get<FileData[]>("/api/files");
             setFiles(response.data);
         } catch (error) {
-            setError("Failed to load files.");
+            setError("Failed to load files");
         }
 
         setLoading(false);
@@ -42,7 +42,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
         try {
             await axios.delete<number>(`/api/files/${id}`);
         } catch (error) {
-            setError("Failed to delete file.");
+            setError("Failed to delete file");
         }
 
         fetchFiles();
@@ -74,7 +74,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
             <Popup isOpen={isPopupConvertOpen} setIsOpen={setIsPopupConvertOpen} selectedExtensions={uniqueExtensions} />
             {/* File Table */}
             {(!error && !loading) && (
-                <div className="overflow-x-auto">
+                <div className="overflow-visible">
                     {files.length > 0 ? (
                         <div>
                             <div className="flex justify-between">
@@ -90,7 +90,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
                                     <span>Convert files</span>
                                 </button>
                             </div>
-                            <div className="w-full rounded-2xl overflow-hidden bg-white">
+                            <div className="w-full rounded-2xl overflow-visible bg-white">
                                 <MassOperationsPanel files={files} selectedFileIds={selectedFileIds} setError={setError} setSelectedFileIds={setSelectedFileIds} refreshTable={fetchFiles} />
                                 <div>
                                     {files.map((file) => (

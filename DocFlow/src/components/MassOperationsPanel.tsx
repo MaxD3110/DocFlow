@@ -13,23 +13,17 @@ interface MassOperationsPanelProps {
 }
 
 const MassOperationsPanel = ({ files, selectedFileIds, setError, setSelectedFileIds, refreshTable }: MassOperationsPanelProps) => {
-    const uniqueExtensions = Array.from(
-        new Map(
-            files
-                .filter(file => selectedFileIds.includes(file.id))
-                .map(file => [file.extension.id, file.extension])
-        ).values()
-    );
 
-    const convertibleTo = Array.from(
-        new Map(
-            uniqueExtensions.map(ext => [ext.id, ext])
-        ).values()
+    const selectedFiles = files.filter(f => selectedFileIds.includes(f.id));
+
+    const convertible = selectedFiles.reduce(
+        (common, file) => common.filter(ext => file.extension.convertibleTo.some(e => e.id === ext.id)),
+        selectedFiles[0]?.extension.convertibleTo || []
     );
 
     const deleteSelectedFiles = async () => {
         try {
-            await axios.post("/api/files/bulkDelete", selectedFileIds, { headers: { "Content-Type": "application/json" } });
+            await axios.post("api/files/bulkDelete", selectedFileIds, { headers: { "Content-Type": "application/json" } });
         } catch (error) {
             setError("Failed to delete files.");
         }
@@ -60,7 +54,7 @@ const MassOperationsPanel = ({ files, selectedFileIds, setError, setSelectedFile
                 </div>
             </div>
             <div className="flex pr-4 gap-3 duration-150" style={selectionMode ? { opacity: '100%' } : { opacity: '0%' }}>
-                <Dropdown convertibleTo={convertibleTo} />
+                <Dropdown convertibleTo={convertible} />
                 <button
                     className="p-3 rounded-full bg-lavender text-white hover:bg-white hover:text-lavender duration-150"
                     onClick={() => deleteSelectedFiles()}>
