@@ -18,3 +18,12 @@ message GrpcFileExtensionModel {
 message FileExtensionResponse {
   repeated GrpcFileExtensionModel extension = 1;
 }
+
+enum ConversionType {
+  UNKNOWN = 0;
+  PDF_TO_DOC = 1;
+  DOC_TO_PDF = 2;
+  IMAGE_TO_PNG = 3;
+  PNG_TO_JPEG = 4;
+  MP3_TO_WAV = 5;
+}

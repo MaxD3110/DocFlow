@@ -9,4 +9,6 @@ public interface IExtensionRepository
     Task<bool> SaveChangesAsync();
     
     Task<List<Extension>> GetAllAsync();
+
+    Task<Extension?> GetById(int id);
 }
