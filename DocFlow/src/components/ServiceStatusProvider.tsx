@@ -19,7 +19,7 @@ export const ServiceStatusProvider: React.FC<{ children: React.ReactNode }> = ({
     const [status, setStatus] = useState<ServiceStatus>(defaultStatus);
 
     const fetchStatus = async () => {
-        let responseManager = false;
+        let responseManager = false; 
         let responseProcessor = false;
 
         try {

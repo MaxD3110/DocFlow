@@ -48,6 +48,20 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
         fetchFiles();
     }
 
+    const convertFile = async () => {
+
+        const fileId = selectedFileIds[0];
+        const extensionId = uniqueExtensions[0].convertibleTo[0].id;
+
+        try {
+            await axios.post(`/api/files/ConvertFile/${fileId}-${extensionId}`);
+        } catch (error) {
+            setError("Failed to convert file");
+        }
+
+        fetchFiles();
+    }
+
     const toggleSelection = (fileId: number, isChecked: boolean) => {
         setSelectedFileIds((prevSelected) =>
             isChecked ? [...prevSelected, fileId] : prevSelected.filter((id) => id !== fileId)
@@ -85,7 +99,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
                                 </button>
                                 <button
                                     className="mb-3 p-3 flex gap-2 items-center text-base font-bold max-w-100 rounded-4xl bg-verdigris text-white hover:bg-white hover:text-verdigris duration-150"
-                                    onClick={() => setIsPopupConvertOpen(!isPopupConvertOpen)}>
+                                    onClick={() => convertFile()}>
                                     <ArrowPathRoundedSquareIcon aria-hidden="true" className="h-6 w-6" />
                                     <span>Convert files</span>
                                 </button>
@@ -97,7 +111,7 @@ const FileList = ({ refresh }: { refresh: boolean }) => {
                                         <div
                                             key={file.id}
                                             className={`${selectedFileIds.includes(file.id) ? 'bg-purple-100 border-b-purple-100' : 'hover:bg-purple-100 hover:border-b-purple-100'}
-                                            py-2 transition flex gap-3 justify-between border-b-gray-100 border-b-2`}>
+                                            py-2 transition flex gap-3 justify-between border-b-gray-100 last:border-0 last:rounded-b-2xl border-b-2`}>
                                             <div className="file-list-column">
                                                 <Checkbox
                                                     checked={selectedFileIds.includes(file.id)}

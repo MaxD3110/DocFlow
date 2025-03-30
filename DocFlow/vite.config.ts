@@ -11,7 +11,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://docflow.com/",
+        target: "http://docflow.com",
         changeOrigin: true,
         secure: false,
       },

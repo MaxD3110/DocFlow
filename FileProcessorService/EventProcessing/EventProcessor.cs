@@ -1,65 +1,42 @@
-using System.Text.Json;
-using AutoMapper;
-using FileManagementService;
 using FileProcessorService.AsyncDataServices;
-using FileProcessorService.Data;
 using FileProcessorService.DTOs;
-using FileProcessorService.Models;
 
 namespace FileProcessorService.EventProcessing;
 
-public class EventProcessor : IEventProcessor
+public class EventProcessor(IServiceScopeFactory scopeFactory) : IEventProcessor
 {
-    private readonly IServiceScopeFactory _scopeFactory;
-    private readonly IMapper _mapper;
-
-    public EventProcessor(IServiceScopeFactory scopeFactory, IMapper mapper)
-    {
-        _scopeFactory = scopeFactory;
-        _mapper = mapper;
-    }
-    
     public async Task ProccessEventAsync(FileToConvertDto? file)
     {
-        using (var scope = _scopeFactory.CreateScope())
+        using (var scope = scopeFactory.CreateScope())
         {
-            var fileLogRepository = scope.ServiceProvider.GetRequiredService<IFileLogRepository>();
-            var fileConverter = scope.ServiceProvider.GetRequiredService<IFileConverter>();
             var eventBus = scope.ServiceProvider.GetRequiredService<IEventBus>();
+            var eventHelper = scope.ServiceProvider.GetRequiredService<IEventHelper>();
 
             if (file == null)
                 return;
 
+            if (!File.Exists(file.StoragePath))
+                throw new FileNotFoundException("--> EventProcessor: Input file not found", file.StoragePath);
+
             try
             {
-                byte[] fileBytes = [];
-            
-                switch (file.Event)
-                {
-                    case ConversionType.PdfToDoc:
-                        fileBytes = await fileConverter.ConvertPdfToDoc(file.StoragePath);
-                        break;
-                    case ConversionType.Unknown:
-                    case ConversionType.DocToPdf:
-                    case ConversionType.ImageToPng:
-                    case ConversionType.PngToJpeg:
-                    case ConversionType.Mp3ToWav:
-                    default:
-                        Console.WriteLine("--> EventProcessor: Undetermined media type");
-                        return;
-                }
+                var outputStream = await eventHelper.ConvertFile(file);
 
                 var convertedFile = new FileConvertedDto();
 
+                if (file.SaveAsNew && outputStream != null)
+                    convertedFile = await eventHelper.TrySaveFile(file, outputStream);
+
+                convertedFile.OriginalFileId = file.Id;
+                convertedFile.TargetExtensionId = file.TargetExtensionId;
+
                 await eventBus.SendConversionResult(convertedFile);
-                
-                var log = _mapper.Map<FileLogModel>(file);
-                await fileLogRepository.SaveFileLogAsync(log);
-                await fileLogRepository.SaveChangesAsync();
+
+                //await eventHelper.AddToLog(file);
             }
             catch (Exception e)
             {
-                Console.WriteLine($"--> EventProcessor: Failed to save file to log {e.Message}");
+                Console.WriteLine($"--> EventProcessor: Failed to perform conversion! {e.Message}");
                 throw;
             }
         }

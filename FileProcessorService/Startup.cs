@@ -1,6 +1,7 @@
 using FileProcessorService.AsyncDataServices;
 using FileProcessorService.Data;
 using FileProcessorService.EventProcessing;
+using FileProcessorService.FileConversion;
 using FileProcessorService.SyncDataServices.Grpc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,12 +23,20 @@ public class Startup
         services.AddScoped<IFileLogRepository, FileLogRepository>();
         services.AddScoped<IExtensionRepository, ExtensionRepository>();
         services.AddScoped<IFileManagementDataClient, FileManagementDataClient>();
-        services.AddScoped<IFileConverter, FileConverter>();
+        services.AddScoped<IEventHelper, EventHelper>();
         
         // Event bus
         services.AddSingleton<IEventBus, EventBus>();
         services.AddSingleton<IEventProcessor, EventProcessor>();
         services.AddHostedService<EventBusBackground>();
+
+        // Strategy factory
+        services.Scan(scan => scan
+            .FromAssemblyOf<IFileConverterStrategy>()
+            .AddClasses(classes => classes.AssignableTo<IFileConverterStrategy>())
+            .AsImplementedInterfaces()
+            .WithSingletonLifetime());
+        services.AddSingleton<IFileConverterFactory, FileConverterFactory>();
 
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.AddControllers();
