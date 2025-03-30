@@ -16,13 +16,10 @@ public static class PrepDb
         }
     }
 
-    private static async Task SeedData(IExtensionRepository repo, IEnumerable<Extension> extensions)
+    private static async Task SeedData(IExtensionRepository extensionRepository, IEnumerable<Extension> extensions)
     {
         Console.WriteLine("Seeding extensions...");
 
-        foreach (var extension in extensions)
-            await repo.SaveAsync(extension);
-
-        await repo.SaveChangesAsync();
+        await extensionRepository.SaveAllAsync(extensions);
     }
 }

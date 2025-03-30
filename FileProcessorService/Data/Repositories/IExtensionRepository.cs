@@ -10,5 +10,7 @@ public interface IExtensionRepository
     
     Task<List<Extension>> GetAllAsync();
 
-    Task<Extension?> GetById(int id);
+    Task<Extension?> GetByExternalIdAsync(int id);
+
+    Task<bool> SaveAllAsync(IEnumerable<Extension> extensions);
 }

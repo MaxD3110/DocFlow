@@ -2,7 +2,13 @@
 
 public class FileConvertedDto
 {
-    public int Id { get; set; }
+    public string Name { get; set; }
+
+    public int OriginalFileId { get; set; }
+
+    public int TargetExtensionId { get; set; }
 
     public string StoragePath { get; set; }
+
+    public long FileSize { get; set; }
 }

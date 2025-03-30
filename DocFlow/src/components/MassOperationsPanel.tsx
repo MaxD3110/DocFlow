@@ -38,7 +38,7 @@ const MassOperationsPanel = ({ files, selectedFileIds, setError, setSelectedFile
     const selectionMode = selectedFileIds.length > 0;
 
     return (
-        <div className="bg-gray-700 text-gray-100 text-sm flex justify-between items-center content-center">
+        <div className="bg-gray-700 text-gray-100 text-sm flex justify-between items-center content-center rounded-t-2xl">
             <div className="py-6 pl-4 text-center flex items-center content-center">
                 <Checkbox
                     checked={isAllSelected}

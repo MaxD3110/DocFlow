@@ -174,13 +174,19 @@ public class FilesController : ControllerBase
         if (file == null)
             return NotFound("File not found");
 
+        var extension = await _extensionRepository.GetByIdAsync(extensionId);
+        
+        if (extension == null)
+            return NotFound("Extension not found");
+        
+        var fileToConvert = _mapper.Map<FileToConvertDto>(file);
+
+        fileToConvert.TargetExtensionId = extensionId;
+        fileToConvert.SourceExtensionId = file.ExtensionId ?? 0;
+        fileToConvert.SaveAsNew = true;
+
         try
         {
-            var fileToConvert = _mapper.Map<FileToConvertDto>(file);
-
-            fileToConvert.ConvertToExtensionId = extensionId;
-            fileToConvert.Event = ConversionType.PdfToDoc;
-
             await _eventBusClient.RequestFileConversion(fileToConvert);
         }
         catch (Exception e)

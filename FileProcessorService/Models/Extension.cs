@@ -13,5 +13,5 @@ public class Extension
 
     public string? FilenameExtension { get; set; }
 
-    public string? MediaType { get; set; }
+    public string MediaType { get; set; }
 }

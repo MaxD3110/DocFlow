@@ -1,5 +1,6 @@
 using FileManagementService.AsyncDataServices;
 using FileManagementService.Data;
+using FileManagementService.EventProcessing;
 using FileManagementService.SyncDataServices.Grpc;
 using FileManagementService.SyncDataServices.Http;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,7 @@ public class Startup
         
         // Event bus
         services.AddSingleton<IEventBus, EventBus>();
+        services.AddSingleton<IEventProcessor, EventProcessor>();
         services.AddHostedService<EventBusBackground>();
 
         services.AddGrpc();

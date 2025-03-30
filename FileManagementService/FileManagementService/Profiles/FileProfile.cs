@@ -12,5 +12,6 @@ public class FileProfile : Profile
         CreateMap<FileDto, FileModel>();
         CreateMap<FileDto, FileToConvertDto>();
         CreateMap<FileModel, FileToConvertDto>();
+        CreateMap<FileConvertedDto, FileModel>();
     }
 }
