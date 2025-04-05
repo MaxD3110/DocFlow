@@ -1,18 +1,19 @@
 import { FileData } from "../types/File";
 import axios from "axios";
 import { CloudArrowDownIcon, TrashIcon } from '@heroicons/react/20/solid';
-import Checkbox from "./Checkbox";
-import Dropdown from "./Dropdown";
+import Checkbox from "./ui-elements/Checkbox";
+import Dropdown from "./ui-elements/Dropdown";
+import { useNotify } from "./notifications/NotificationContext";
 
 interface MassOperationsPanelProps {
     files: FileData[],
     selectedFileIds: number[],
-    setError: React.Dispatch<React.SetStateAction<string>>,
     setSelectedFileIds: React.Dispatch<React.SetStateAction<number[]>>,
     refreshTable: () => Promise<void>
 }
 
-const MassOperationsPanel = ({ files, selectedFileIds, setError, setSelectedFileIds, refreshTable }: MassOperationsPanelProps) => {
+const MassOperationsPanel = ({ files, selectedFileIds, setSelectedFileIds, refreshTable }: MassOperationsPanelProps) => {
+    const notify = useNotify();
 
     const selectedFiles = files.filter(f => selectedFileIds.includes(f.id));
 
@@ -25,7 +26,7 @@ const MassOperationsPanel = ({ files, selectedFileIds, setError, setSelectedFile
         try {
             await axios.post("api/files/bulkDelete", selectedFileIds, { headers: { "Content-Type": "application/json" } });
         } catch (error) {
-            setError("Failed to delete files.");
+            notify("Failed to delete files", "error");
         }
         await refreshTable();
     }
@@ -54,14 +55,15 @@ const MassOperationsPanel = ({ files, selectedFileIds, setError, setSelectedFile
                 </div>
             </div>
             <div className="flex pr-4 gap-3 duration-150" style={selectionMode ? { opacity: '100%' } : { opacity: '0%' }}>
+                <div className="pl-3 font-light text-lg flex items-center duration-150">Convert all to</div>
                 <Dropdown convertibleTo={convertible} />
                 <button
-                    className="p-3 rounded-full bg-lavender text-white hover:bg-white hover:text-lavender duration-150"
+                    className="p-3 rounded-full bg-lavender shadow-xs text-white hover:bg-white hover:text-lavender duration-150"
                     onClick={() => deleteSelectedFiles()}>
                     <CloudArrowDownIcon aria-hidden="true" className="h-6 w-6" />
                 </button>
                 <button
-                    className="p-3 rounded-full bg-red-400 text-white hover:bg-white hover:text-red-400 duration-150"
+                    className="p-3 rounded-full bg-red-400 shadow-xs text-white hover:bg-white hover:text-red-400 duration-150"
                     onClick={() => deleteSelectedFiles()}>
                     <TrashIcon aria-hidden="true" className="h-6 w-6" />
                 </button>

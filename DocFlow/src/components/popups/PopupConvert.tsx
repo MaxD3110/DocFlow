@@ -1,5 +1,5 @@
 import { Description, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { ConvertibleToExtension } from '../types/ConvertibleToExtension';
+import { ConvertibleToExtension } from '../../types/ConvertibleToExtension';
 
 interface PopupConvertProps {
   isOpen: boolean,
