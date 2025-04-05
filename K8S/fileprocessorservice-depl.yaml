@@ -15,6 +15,13 @@ spec:
       containers:
         - name: fileprocessorservice
           image: maxd3110/fileprocessorservice:latest
+          volumeMounts:
+            - name: shared-files
+              mountPath: /app/SharedFiles
+      volumes:
+        - name: shared-files
+          persistentVolumeClaim:
+            claimName: shared-files-pvc
 ---
 apiVersion: v1
 kind: Service
