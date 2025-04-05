@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { ConvertibleToExtension } from '../types/ConvertibleToExtension';
-import { useServiceStatuses } from './ServiceStatusProvider';
+import { ConvertibleToExtension } from '../../types/ConvertibleToExtension';
+import { useServiceStatuses } from '../ServiceStatusProvider';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -35,7 +35,7 @@ const Dropdown = ({ convertibleTo }: DropdownProps) => {
         ref={buttonRef}
         disabled={!isActive}
         onClick={() => setOpened(isActive ? !isOpened : false)}
-        className={`${isOpened ? 'rounded-t-4xl' : 'rounded-4xl'} ${isActive ? 'border-verdigris bg-white' : 'border-red-400 bg-gray-100'}
+        className={`${isOpened ? 'rounded-t-4xl' : 'rounded-4xl'} ${isActive ? 'border-verdigris bg-white' : 'border-red-400 bg-gray-100 cursor-not-allowed'}
           inline-flex w-32 justify-center z-2 relative gap-x-1.5 px-3 py-3 text-sm font-semibold border-t-4 text-gray-700 shadow-xs hover:bg-gray-50 duration-200`}>
         Options
         <ChevronDownIcon aria-hidden="true" className={`${isOpened ? 'rotate-180' : ''} -mr-1 size-5 text-gray-700 duration-150`} />

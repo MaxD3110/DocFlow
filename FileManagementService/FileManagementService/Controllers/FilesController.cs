@@ -123,7 +123,7 @@ public class FilesController : ControllerBase
             
         try
         {
-            if (!string.IsNullOrEmpty(file.StoragePath))
+            if (!string.IsNullOrEmpty(file.StoragePath) && System.IO.File.Exists(file.StoragePath))
                 System.IO.File.Delete(file.StoragePath);
             
             await _fileRepository.DeleteAsync(file);
@@ -151,7 +151,7 @@ public class FilesController : ControllerBase
         {
             try
             {
-                if (!string.IsNullOrEmpty(file.StoragePath))
+                if (!string.IsNullOrEmpty(file.StoragePath) && System.IO.File.Exists(file.StoragePath))
                     System.IO.File.Delete(file.StoragePath);
             
                 await _fileRepository.DeleteAsync(file);

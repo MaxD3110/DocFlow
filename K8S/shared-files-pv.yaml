@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: shared-files-pv
+  labels:
+    role: title
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /host_mnt/d/SharedFiles
+  persistentVolumeReclaimPolicy: Retain
+  

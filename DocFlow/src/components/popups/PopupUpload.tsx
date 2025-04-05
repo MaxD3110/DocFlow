@@ -1,7 +1,5 @@
-import { useState, ChangeEvent, useEffect } from "react";
-import { Description, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import axios from "axios";
-import FileUpload from "./FileUpload";
+import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
+import FileUpload from "../FileUpload";
 import { XCircleIcon } from "@heroicons/react/20/solid";
 
 interface PopupUploadProps {
