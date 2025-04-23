@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
         Manager Service {getIndicator(statuses.manager)}
       </div>
       <div className="flex items-center gap-1.5">
-        Convertation Service {getIndicator(statuses.processor)}
+        Conversion Service {getIndicator(statuses.processor)}
       </div>
     </footer>
   );

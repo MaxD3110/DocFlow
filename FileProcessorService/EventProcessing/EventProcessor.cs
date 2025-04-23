@@ -5,7 +5,7 @@ namespace FileProcessorService.EventProcessing;
 
 public class EventProcessor(IServiceScopeFactory scopeFactory) : IEventProcessor
 {
-    public async Task ProccessEventAsync(FileToConvertDto? file)
+    public async Task ProcessEventAsync(FileToConvertDto? file)
     {
         using (var scope = scopeFactory.CreateScope())
         {

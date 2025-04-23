@@ -6,13 +6,15 @@ public class FileConverterFactory : IFileConverterFactory
 
     public FileConverterFactory(IEnumerable<IFileConverterStrategy> strategies)
     {
-        _strategies = strategies.ToDictionary(
-            strategy => strategy switch
+        _strategies = new Dictionary<(string, string), IFileConverterStrategy>();
+
+        foreach (var strategy in strategies)
+        {
+            foreach (var (input, output) in strategy.SupportedConversions)
             {
-                JpgToPng => ("image/jpeg", "image/png"),
-                _ => throw new Exception("Unknown strategy")
+                _strategies[(input, output)] = strategy;
             }
-        );
+        }
     }
     
     public bool TryGetConverter(string sourceMediaType, string targetMediaType, out IFileConverterStrategy converter)

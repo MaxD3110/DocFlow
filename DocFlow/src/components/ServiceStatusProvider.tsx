@@ -20,7 +20,8 @@ export const ServiceStatusProvider: React.FC<{ children: React.ReactNode }> = ({
 
     const fetchStatus = async () => {
         let responseManager = false; 
-        let responseProcessor = false;
+        //let responseProcessor = false;
+        let responseProcessor = true;
 
         try {
             responseManager = (await axios.get("/api/status")).data;
@@ -28,11 +29,11 @@ export const ServiceStatusProvider: React.FC<{ children: React.ReactNode }> = ({
             console.error("Failed to fetch file manager service status", error);
         }
 
-        try {
+/*         try {
             responseProcessor = (await axios.get("/api/processor/status")).data;
         } catch (error) {
             console.error("Failed to fetch file processor service status", error);
-        }
+        } */
 
         setStatus({ manager: responseManager, processor: responseProcessor });
     };

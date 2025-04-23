@@ -5,5 +5,5 @@ namespace FileProcessorService.EventProcessing;
 
 public interface IEventProcessor
 {
-    Task ProccessEventAsync(FileToConvertDto? file);
+    Task ProcessEventAsync(FileToConvertDto? file);
 }

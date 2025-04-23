@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { FileData } from "../types/File";
 import axios from "axios";
 import { CloudArrowDownIcon, TrashIcon } from '@heroicons/react/20/solid';
@@ -9,13 +10,31 @@ interface MassOperationsPanelProps {
     files: FileData[],
     selectedFileIds: number[],
     setSelectedFileIds: React.Dispatch<React.SetStateAction<number[]>>,
-    refreshTable: () => Promise<void>
+    refreshTable: () => Promise<void>,
+    selectedExtensions: Record<number, number>,
+    setSelectedExtensions: React.Dispatch<React.SetStateAction<Record<number, number>>>
+    globalExtensionId: number | null,
+    setGlobalExtensionId: React.Dispatch<React.SetStateAction<number | null>>
 }
 
-const MassOperationsPanel = ({ files, selectedFileIds, setSelectedFileIds, refreshTable }: MassOperationsPanelProps) => {
+const MassOperationsPanel = ({
+    files,
+    selectedFileIds,
+    setSelectedFileIds,
+    refreshTable,
+    selectedExtensions,
+    setSelectedExtensions,
+    globalExtensionId,
+    setGlobalExtensionId
+}: MassOperationsPanelProps) => {
     const notify = useNotify();
 
     const selectedFiles = files.filter(f => selectedFileIds.includes(f.id));
+
+    useEffect(() => {
+        console.log(selectedExtensions);
+        
+    })
 
     const convertible = selectedFiles.reduce(
         (common, file) => common.filter(ext => file.extension.convertibleTo.some(e => e.id === ext.id)),
@@ -35,6 +54,19 @@ const MassOperationsPanel = ({ files, selectedFileIds, setSelectedFileIds, refre
         setSelectedFileIds(isChecked ? files.map(file => file.id) : []);
     };
 
+    const applyGlobalConversion = (extensionId: number) => {
+
+        setGlobalExtensionId(extensionId);
+
+        setSelectedExtensions(prev => {
+            const updated = { ...prev };
+            selectedFileIds.forEach(id => {
+                updated[id] = extensionId!;
+            });
+            return updated;
+        });
+    };
+
     const isAllSelected = files.length > 0 && selectedFileIds.length === files.length;
     const selectionMode = selectedFileIds.length > 0;
 
@@ -48,15 +80,16 @@ const MassOperationsPanel = ({ files, selectedFileIds, setSelectedFileIds, refre
                 <div className="pl-3 font-light text-lg duration-150">
                     {selectionMode ? (
                         <div><b className="font-bold">{selectedFileIds.length}</b> files selected</div>
-                    ) : (
-                        <div>Click to select all</div>
-                    )}
-
+                    ) : (<div>Click to select all</div>)}
                 </div>
             </div>
             <div className="flex pr-4 gap-3 duration-150" style={selectionMode ? { opacity: '100%' } : { opacity: '0%' }}>
-                <div className="pl-3 font-light text-lg flex items-center duration-150">Convert all to</div>
-                <Dropdown convertibleTo={convertible} />
+                <div className="pl-3 font-light text-lg flex items-center duration-150">Convert selected to</div>
+                <Dropdown
+                    convertibleTo={convertible}
+                    selectedExtensionId={globalExtensionId}
+                    onSelect={(extensionId) => applyGlobalConversion(extensionId)}
+                />
                 <button
                     className="p-3 rounded-full bg-lavender shadow-xs text-white hover:bg-white hover:text-lavender duration-150"
                     onClick={() => deleteSelectedFiles()}>

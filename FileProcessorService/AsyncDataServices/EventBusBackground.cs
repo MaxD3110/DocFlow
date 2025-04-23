@@ -17,7 +17,7 @@ public class EventBusBackground : BackgroundService
     {
         await _eventBus.ListenForConvertationRequests(async convertedFile =>
         {
-            await _eventProcessor.ProccessEventAsync(convertedFile);
+            await _eventProcessor.ProcessEventAsync(convertedFile);
             Console.WriteLine($"--> RabbitMQ: Received conversion file event for FileId: {convertedFile.Id}");
         });
     }
