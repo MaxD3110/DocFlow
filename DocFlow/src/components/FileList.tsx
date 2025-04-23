@@ -3,17 +3,27 @@ import { FileData } from "../types/File";
 import { CloudArrowDownIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import Dropdown from "./ui-elements/Dropdown";
 import Checkbox from "./ui-elements/Checkbox";
-import MassOperationsPanel from "./MassOperationsPanel";
 import { useNotify } from "./notifications/NotificationContext";
 
 interface FileListProps {
     files: FileData[],
     fetchFiles: () => Promise<void>,
     selectedFileIds: number[],
-    setSelectedFileIds: React.Dispatch<React.SetStateAction<number[]>>
+    setSelectedFileIds: React.Dispatch<React.SetStateAction<number[]>>,
+    selectedExtensions: Record<number, number>,
+    setSelectedExtensions: React.Dispatch<React.SetStateAction<Record<number, number>>>,
+    setGlobalExtensionId: React.Dispatch<React.SetStateAction<number | null>>
 }
 
-const FileList = ({ files, fetchFiles, selectedFileIds, setSelectedFileIds }: FileListProps) => {
+const FileList = ({
+    files,
+    fetchFiles,
+    selectedFileIds,
+    setSelectedFileIds,
+    selectedExtensions,
+    setSelectedExtensions,
+    setGlobalExtensionId
+}: FileListProps) => {
     const notify = useNotify();
 
     const deleteFile = async (id: number) => {
@@ -39,43 +49,47 @@ const FileList = ({ files, fetchFiles, selectedFileIds, setSelectedFileIds }: Fi
     }
 
     return (
-        <div className="w-full rounded-2xl overflow-visible bg-white shadow-xs">
-            <MassOperationsPanel files={files} selectedFileIds={selectedFileIds} setSelectedFileIds={setSelectedFileIds} refreshTable={fetchFiles} />
-            <div>
-                {files.map((file) => (
-                    <div
-                        key={file.id}
-                        className={`${selectedFileIds.includes(file.id) ? 'bg-purple-100 border-b-purple-100' : 'hover:bg-purple-100 hover:border-b-purple-100'}
+        <div>
+            {files.map((file) => (
+                <div
+                    key={file.id}
+                    className={`${selectedFileIds.includes(file.id) ? 'bg-purple-100 border-b-purple-100' : 'hover:bg-purple-100 hover:border-b-purple-100'}
                     py-2 transition flex gap-3 justify-between border-b-gray-100 last:border-0 last:rounded-b-2xl border-b-2`}>
-                        <div className="file-list-column">
-                            <Checkbox
-                                checked={selectedFileIds.includes(file.id)}
-                                onChange={(checked) => toggleSelection(file.id, checked)}
-                            />
-                        </div>
-                        <div className="file-list-column">
-                            <div className="flex flex-col text-gray-700">
-                                <span className="font-bold">{file.name}</span>
-                                <span>{fileSize(file.fileSize)}</span>
-                            </div>
-                        </div>
-                        <div className="file-list-column text-gray-700">
-                            <span>{new Date(file.uploadedAt).toLocaleString("en-us", { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', hour12: false, minute: 'numeric' })}</span>
-                        </div>
-                        <div className="file-list-column gap-11">
-                            <Dropdown convertibleTo={file.extension?.convertibleTo ?? []} />
-                            <a href={file.storagePath} download>
-                                <CloudArrowDownIcon aria-hidden="true" className="cursor-pointer size-8 text-gray-500 hover:fill-lavender transition-colors" />
-                            </a>
-                            <a onClick={() => deleteFile(file.id)}>
-                                <div className="peer h-8 w-8 cursor-pointer transition-all flex justify-center items-center text-red-400 appearance-none rounded-full bg-red-200 shadow hover:shadow-md hover:bg-red-400 hover:text-red-200">
-                                    <XMarkIcon aria-hidden="true" className="h-6 w-6" />
-                                </div>
-                            </a>
+                    <div className="file-list-column">
+                        <Checkbox
+                            checked={selectedFileIds.includes(file.id)}
+                            onChange={(checked) => toggleSelection(file.id, checked)}
+                        />
+                    </div>
+                    <div className="file-list-column">
+                        <div className="flex flex-col text-gray-700">
+                            <span className="font-bold">{file.name}</span>
+                            <span>{fileSize(file.fileSize)}</span>
                         </div>
                     </div>
-                ))}
-            </div>
+                    <div className="file-list-column text-gray-700">
+                        <span>{new Date(file.uploadedAt).toLocaleString("en-us", { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', hour12: false, minute: 'numeric' })}</span>
+                    </div>
+                    <div className="file-list-column gap-11">
+                        <Dropdown
+                            convertibleTo={file.extension?.convertibleTo ?? []}
+                            selectedExtensionId={selectedExtensions[file.id]}
+                            onSelect={(extensionId) => {
+                                setSelectedExtensions(prev => ({ ...prev, [file.id]: extensionId }));
+                                if (selectedFileIds.includes(file.id)) setGlobalExtensionId(null);
+                            }}
+                        />
+                        <a href={file.storagePath} download>
+                            <CloudArrowDownIcon aria-hidden="true" className="cursor-pointer size-8 text-gray-500 hover:fill-lavender transition-colors" />
+                        </a>
+                        <a onClick={() => deleteFile(file.id)}>
+                            <div className="peer h-8 w-8 cursor-pointer transition-all flex justify-center items-center text-red-400 appearance-none rounded-full bg-red-200 shadow hover:shadow-md hover:bg-red-400 hover:text-red-200">
+                                <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };

@@ -7,19 +7,20 @@ import { ArrowPathRoundedSquareIcon } from "@heroicons/react/20/solid";
 import { useServiceStatuses } from "./ServiceStatusProvider";
 import Popup from "./popups/PopupConvert";
 import FileList from "./FileList";
+import MassOperationsPanel from "./MassOperationsPanel";
 
 const FileTable = ({ refresh }: { refresh: boolean }) => {
     const [files, setFiles] = useState<FileData[]>([]);
+    const [selectedExtensions, setSelectedExtensions] = useState<Record<number, number>>({});
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
     const [selectedFileIds, setSelectedFileIds] = useState<number[]>([]);
     const [isPopupUploadOpen, setIsPopupUploadOpen] = useState(false);
     const [isPopupConvertOpen, setIsPopupConvertOpen] = useState(false);
+    const [globalExtensionId, setGlobalExtensionId] = useState<number | null>(null);
     const statuses = useServiceStatuses();
 
-    useEffect(() => {
-        fetchFiles();
-    }, [refresh]); // Reload when refresh changes
+    useEffect(() => { fetchFiles() }, [refresh]);
 
     const fetchFiles = async () => {
         setLoading(true);
@@ -62,7 +63,6 @@ const FileTable = ({ refresh }: { refresh: boolean }) => {
         <div className="mx-auto mt-48">
             <PopupUpload onUploadSuccess={() => fetchFiles()} isOpen={isPopupUploadOpen} setIsOpen={setIsPopupUploadOpen} />
             <Popup isOpen={isPopupConvertOpen} setIsOpen={setIsPopupConvertOpen} selectedExtensions={uniqueExtensions} />
-            {/* File Table */}
             {(!error && !loading) && (
                 <div className="overflow-visible">
                     {files.length > 0 ? (
@@ -83,7 +83,25 @@ const FileTable = ({ refresh }: { refresh: boolean }) => {
                                     <span>Convert files</span>
                                 </button>
                             </div>
-                            <FileList files={files} fetchFiles={() => fetchFiles()} selectedFileIds={selectedFileIds} setSelectedFileIds={setSelectedFileIds} />
+                            <div className="w-full rounded-2xl overflow-visible bg-white shadow-xs">
+                                <MassOperationsPanel
+                                    files={files}
+                                    selectedFileIds={selectedFileIds}
+                                    setSelectedFileIds={setSelectedFileIds}
+                                    refreshTable={fetchFiles}
+                                    selectedExtensions={selectedExtensions}
+                                    setSelectedExtensions={setSelectedExtensions}
+                                    globalExtensionId={globalExtensionId}
+                                    setGlobalExtensionId={setGlobalExtensionId} />
+                                <FileList
+                                    files={files}
+                                    fetchFiles={() => fetchFiles()}
+                                    selectedFileIds={selectedFileIds}
+                                    setSelectedFileIds={setSelectedFileIds}
+                                    selectedExtensions={selectedExtensions}
+                                    setSelectedExtensions={setSelectedExtensions}
+                                    setGlobalExtensionId={setGlobalExtensionId} />
+                            </div>
                         </div>
                     ) : (
                         <div className="text-center font-extrabold py-4 text-gray-700 flex flex-col justify-center items-center">
@@ -99,10 +117,9 @@ const FileTable = ({ refresh }: { refresh: boolean }) => {
             )}
 
             <div className="flex justify-center text-center font-extrabold py-4 text-3xl">
-                {/* Loading State */}
+
                 {loading && <p className="text-gray-700 text-center">Loading files...</p>}
 
-                {/* Error Message */}
                 {error &&
                     <div className="flex justify-center items-center flex-col">
                         <XCircleIcon aria-hidden="true" className="h-12 w-12 text-red-500" />
